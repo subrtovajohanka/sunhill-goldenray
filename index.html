@@ -571,17 +571,25 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   </div>
 </section>
 
-  <!-- === Location === -->
-  <section id="location" class="py-14 bg-slate-900">
-    <div class="container container-narrow mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
-      <p class="mt-2 text-slate-400">Adresa: <span class="italic">(doplnit přesnou adresu)</span>. Parkování u objektu. Obchod a pláž v docházkové vzdálenosti.</p>
-      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
-        <!-- Nahraď vlastní mapou (sdílení z Google Maps → vložit mapu) -->
-        <iframe title="Mapa" src="https://www.google.com/maps?q=Primosten&output=embed" width="100%" height="420" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
+ <!-- === Location === -->
+<section id="location" class="py-14 bg-slate-900">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
+    <p class="mt-2 text-slate-400">
+      Adresa: <strong>Augusta Šenoe, 22202 Primošten, Chorvatsko</strong><br>
+      Parkování přímo před apartmánem. Obchod a pláž v docházkové vzdálenosti.
+    </p>
+    <div class="mt-6 rounded-2xl overflow-hidden border border-zinc-800 shadow-soft">
+      <!-- Google Maps embed -->
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2871.911369387787!2d15.924511476878405!3d43.589270771104865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13352e199176ec43%3A0x637d7e3c8d24425a!2sAugusta%20%C5%A0enoe%2C%2022202%20Primo%C5%A1ten%2C%20Chorvatsko!5e0!3m2!1scs!2scz!4v1693053625258!5m2!1scs!2scz"
+        width="100%" height="420" style="border:0;" 
+        allowfullscreen="" loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- === Terms === -->
   <section id="terms" class="py-14">
@@ -589,23 +597,16 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
       <h2 class="text-2xl md:text-3xl font-semibold">Platební a storno podmínky</h2>
       <ul class="mt-4 space-y-2 text-slate-300 list-disc ml-5">
         <li>Rezervace vzniká po potvrzení a úhradě <strong>rezervačního poplatku 30&nbsp;%</strong> z ceny pobytu.</li>
-        <li>Zbytek ceny splatný při příjezdu / před příjezdem (doplnit preferenci).</li>
-        <li>Pobyty <strong>7+ nocí</strong> – <strong>bez závěrečného úklidu</strong>. Kratší pobyty: host zajistí úklid sám, nebo lze objednat placený úklid (cena na dotaz).</li>
-        <li>Check‑in / Check‑out: (doplnit např. 15:00 / 10:00).</li>
+        <li>Zbytek ceny splatný před příjezdem.</li>
+        <li>Check‑in od 14:00 / Check‑out: do 10:00</li>
       </ul>
 
       <!-- Odkaz na PDF s kompletními podmínkami -->
       <div class="mt-6 p-4 border rounded-2xl">
         <p class="text-sm text-slate-400">Kompletní všeobecné obchodní podmínky ke stažení:</p>
-        <a href="docs/podminky.pdf" class="inline-block mt-2 px-4 py-2 rounded-lg bg-slate-900 text-white">Stáhnout PDF</a>
-        <p class="text-xs text-slate-500 mt-2">Soubor nahraj do repozitáře do složky <code>/docs/podminky.pdf</code>. Pokud chceš náhled na stránce, vlož dole uvedený iframe.</p>
-        <details class="mt-3 text-sm text-slate-400">
-          <summary class="cursor-pointer">Zobrazit PDF vložené přímo na stránce</summary>
-          <div class="mt-3 rounded-xl overflow-hidden border">
-            <iframe src="docs/podminky.pdf" width="100%" height="600" style="border:0" loading="lazy"></iframe>
-          </div>
-        </details>
-      </div>
+        <a href="docs/podminky.pdf" class="inline-block mt-2 px-4 py-2 rounded-lg bg-slate-900 text-white">
+  Stáhnout PDF
+        </a>
     </div>
   </section>
 
@@ -616,26 +617,32 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
       <div class="mt-4 grid md:grid-cols-3 gap-6 text-slate-100">
         <div>
           <div class="text-sm text-slate-300">E‑mail</div>
-          <a href="mailto:info@sunhill-goldenray.example" class="underline">info@sunhill-goldenray.example</a>
+          <a href="mailto:info@sunhill-goldenray.example" class="underline">primosten.sunhill@gmail.com</a>
         </div>
         <div>
-          <div class="text-sm text-slate-300">Telefon</div>
-          <a href="tel:+420000000000" class="underline">+420 000 000 000</a>
-        </div>
-        <div>
-          <div class="text-sm text-slate-300">Sítě</div>
-          <div class="flex gap-4">
-            <a class="underline" href="#">Instagram</a>
-            <a class="underline" href="#">Facebook</a>
-          </div>
-        </div>
-      </div>
-      <p class="mt-6 text-sm text-slate-300">© <span id="year"></span> Sunhill · Golden Ray, Primošten.</p>
-    </div>
-  </section>
+  <div class="text-sm text-slate-300">Sítě</div>
+  <div class="flex gap-4">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/goldenraycroatia/" target="_blank" rel="noopener"
+       class="hover:text-[var(--gold)] transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Zm5.75-2a1.25 1.25 0 1 1-2.5 0a1.25 1.25 0 0 1 2.5 0Z"/>
+      </svg>
+    </a>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/people/Primo%C5%A1ten-Resort-Sunhill-Golden-Ray/61558460626353/" target="_blank" rel="noopener"
+       class="hover:text-[var(--gold)] transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+        <path d="M13 3h4a1 1 0 0 1 1 1v4h-2.5A1.5 1.5 0 0 0 14 9.5V12h4l-1 4h-3v7h-4v-7H8v-4h2V9.5A4.5 4.5 0 0 1 14.5 5H17V3Z"/>
+      </svg>
+    </a>
+  </div>
+  </div>
+</div>
+</section>
 
   <!-- === Footer small === -->
-<footer class="py-6 text-center text-xs text-slate-500">Web běží jako statická stránka (GitHub Pages). Vytvořeno s ♥.</footer>
+<footer class="py-6 text-center text-xs text-slate-500">© 2025 Primošten Resort Sunhill Golden Ray</footer>
   <script>
   document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('menuBtn');
