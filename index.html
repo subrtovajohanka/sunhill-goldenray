@@ -476,39 +476,101 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   });
 </script>
   
-  <!-- === Explore === -->
-  <section id="explore" class="py-14 bg-slate-900">
-    <div class="container container-narrow mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold">Tipy na výlety</h2>
-      <p class="mt-2 text-slate-400">Objev okolí Primoštenu – pláže, města a příroda. (Krátké karty s fotkou a odkazem – inspirováno stránkou „Explore“ z Pearl Residence.)</p>
-      <div class="mt-6 grid md:grid-cols-3 gap-4">
-        <article class="border rounded-2xl overflow-hidden shadow-soft">
-          <img src="img/explore-krka.jpg" alt="Národní park Krka" class="w-full aspect-[4/3] object-cover"/>
-          <div class="p-4">
-            <h3 class="font-semibold">Národní park Krka</h3>
-            <p class="text-sm text-slate-400 mt-1">Vodopády, dřevěné chodníky a vyhlídky. ~1 h autem.</p>
-            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
-          </div>
-        </article>
-        <article class="border rounded-2xl overflow-hidden shadow-soft">
-          <img src="img/explore-sibenik.jpg" alt="Šibenik" class="w-full aspect-[4/3] object-cover"/>
-          <div class="p-4">
-            <h3 class="font-semibold">Šibenik</h3>
-            <p class="text-sm text-slate-400 mt-1">Historické město, katedrála sv. Jakuba (UNESCO). 30 min.</p>
-            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
-          </div>
-        </article>
-        <article class="border rounded-2xl overflow-hidden shadow-soft">
-          <img src="img/explore-trogir.jpg" alt="Trogir" class="w-full aspect-[4/3] object-cover"/>
-          <div class="p-4">
-            <h3 class="font-semibold">Trogir</h3>
-            <p class="text-sm text-slate-400 mt-1">Malebné historické centrum na ostrově. 45 min.</p>
-            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
-          </div>
-        </article>
-      </div>
+ <!-- === Explore === -->
+<section id="explore" class="py-14 bg-zinc-950">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold">Tipy na výlety</h2>
+    <p class="mt-2 text-slate-400">Objevte okolí Primoštenu – pláže, města a příroda.</p>
+
+    <div class="mt-6 grid md:grid-cols-3 gap-6">
+
+      <!-- Krka -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/krka.png" alt="Národní park Krka" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Národní park Krka</h3>
+          <p class="text-sm text-slate-400 mt-1">Vodopády, dřevěné chodníky a výhledy. ~1 h autem.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Krka+National+Park+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Šibenik -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/sibenik.png" alt="Šibenik" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Šibenik</h3>
+          <p class="text-sm text-slate-400 mt-1">Historické město s katedrálou UNESCO. 30 min autem.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Šibenik,+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Trogir -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/trogir.png" alt="Trogir" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Trogir</h3>
+          <p class="text-sm text-slate-400 mt-1">Malebné historické centrum na ostrově. 45 min autem.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Trogir,+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Pevnost Klis -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/klis.png" alt="Pevnost Klis" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Pevnost Klis</h3>
+          <p class="text-sm text-slate-400 mt-1">Impozantní pevnost nad Splitem (Game of Thrones!).</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Klis+Fortress,+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Rajčica – Rimski bunari -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/rajcica.png" alt="Rajčica – Rimski bunari" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Rajčica – Rimski bunari</h3>
+          <p class="text-sm text-slate-400 mt-1">Skryté římské studny u vesnice Nisko.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Rajčica+Rimski+Bunari+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Krčić waterfall -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/krcic.png" alt="Vodopád Krčić" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Vodopád Krčić</h3>
+          <p class="text-sm text-slate-400 mt-1">Divoký vodopád nad řekou Krka.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Krčić+Waterfall+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
+      <!-- Cetina spring -->
+      <article class="border border-zinc-800 rounded-2xl overflow-hidden shadow-soft bg-zinc-900">
+        <img src="img/cetina.png" alt="Pramen Cetiny" class="w-full aspect-[4/3] object-cover"/>
+        <div class="p-4">
+          <h3 class="font-semibold text-lg">Pramen Cetiny</h3>
+          <p class="text-sm text-slate-400 mt-1">Tyrkysový krasový pramen řeky Cetiny.</p>
+          <a class="inline-block mt-2 text-[var(--gold)] hover:underline"
+             href="https://maps.google.com/?q=Cetina+Spring+Croatia"
+             target="_blank" rel="noopener">Zobrazit na mapě</a>
+        </div>
+      </article>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- === Location === -->
   <section id="location" class="py-14 bg-slate-900">
