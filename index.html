@@ -155,41 +155,105 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   </div>
 </section>
 
-  <!-- === Booking form (fallback / nezávazná poptávka) === -->
-  <section id="booking" class="py-14 bg-slate-900">
-    <div class="container container-narrow mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold">Nezávazná rezervace</h2>
-      <p class="mt-2 text-slate-400">Preferujeme rezervace přes kalendář výše. Pokud ti to nevyhovuje, můžeš poslat nezávazný dotaz formulářem:</p>
+ <!-- === Nezávazná poptávka (fallback) === -->
+<section id="booking" class="py-14 bg-zinc-950">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Nezávazná poptávka</h2>
+    <p class="mt-2 text-zinc-400">
+      Preferujeme online rezervaci v kalendáři výše. Pokud Vám to nevyhovuje, můžete nám zanechat nezávaznou poptávku.
+    </p>
 
-      <form class="mt-6 grid md:grid-cols-2 gap-4" name="contact" netlify>
-        <input type="hidden" name="form-name" value="contact">
-        <label class="block">
-          <span class="text-sm">Jméno a příjmení</span>
-          <input name="name" required class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="Např. Jana Nováková" />
-        </label>
-        <label class="block">
-          <span class="text-sm">E‑mail</span>
-          <input name="email" type="email" required class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="jmeno@email.cz" />
-        </label>
-        <label class="block">
-          <span class="text-sm">Termín od</span>
-          <input name="from" type="date" required class="mt-1 w-full border rounded-xl px-3 py-2" />
-        </label>
-        <label class="block">
-          <span class="text-sm">Termín do</span>
-          <input name="to" type="date" required class="mt-1 w-full border border-slate-700 bg-slate-900 text-slate-100 placeholder-slate-500 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"/>
-        </label>
-        <label class="block md:col-span-2">
-          <span class="text-sm">Zpráva</span>
-          <textarea name="message" rows="4" class="mt-1 w-full border border-slate-700 bg-slate-900 text-slate-100 placeholder-slate-500 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"Počet osob, speciální požadavky…"></textarea>
-        </label>
-        <div class="md:col-span-2 flex items-center justify-between">
-          <div class="text-sm text-slate-400">Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.</div>
-          <button class="px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl">Odeslat dotaz</button>
+    <form id="contactForm"
+          action="https://formspree.io/f/mdklpryz"
+          method="POST"
+          class="mt-6 grid md:grid-cols-2 gap-4">
+
+      <!-- předmět e-mailu -->
+      <input type="hidden" name="_subject" value="Nezávazná poptávka – Sunhill Golden Ray">
+      <!-- honeypot proti spamu -->
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+
+      <label class="block">
+        <span class="text-sm">Jméno a příjmení</span>
+        <input name="name" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+               placeholder="Např. Jana Nováková">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">E-mail</span>
+        <input name="email" type="email" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+               placeholder="např. host@example.com">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">Termín od</span>
+        <input name="from" type="date" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">Termín do</span>
+        <input name="to" type="date" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500">
+      </label>
+
+      <label class="block md:col-span-2">
+        <span class="text-sm">Zpráva</span>
+        <textarea name="message" rows="4"
+                  class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                         focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+                  placeholder="Počet osob, věk dětí, speciální požadavky…"></textarea>
+      </label>
+
+      <div class="md:col-span-2 flex items-center justify-between">
+        <div class="text-sm text-zinc-400">
+          Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
         </div>
-      </form>
-    </div>
-  </section>
+        <button class="px-5 py-3 bg-[var(--gold)] text-zinc-950 font-semibold rounded-xl hover:brightness-95">
+          Odeslat poptávku
+        </button>
+      </div>
+
+      <!-- zpráva po odeslání -->
+      <p id="contactMsg" class="md:col-span-2 mt-3 text-sm"></p>
+    </form>
+  </div>
+</section>
+
+<script>
+  // vlastní JS pro zobrazení hlášky po odeslání
+  const form = document.getElementById('contactForm');
+  const msg  = document.getElementById('contactMsg');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = 'Odesíláme…';
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.reset();
+        msg.className = 'md:col-span-2 mt-3 text-sm text-emerald-400';
+        msg.textContent = 'Děkujeme, Vaše poptávka byla úspěšně odeslána. Ozveme se co nejdříve.';
+      } else {
+        throw new Error('Formspree error');
+      }
+    } catch (err) {
+      msg.className = 'md:col-span-2 mt-3 text-sm text-red-400';
+      msg.textContent = 'Omlouváme se, odeslání se nezdařilo. Zkuste to znovu nebo nám napište na primosten.sunhill@gmail.com.';
+    }
+  });
+</script>
 
   <!-- === Gallery === -->
   <section id="gallery" class="py-14">
