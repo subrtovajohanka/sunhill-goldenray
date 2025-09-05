@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Primošten Resort Sunhill · Golden Ray</title>
+  <meta name="description" content="Soukromé ubytování v Primoštenu – Sunhill · Golden Ray. Moderní a čistý apartmán kousek od moře. Online dostupnost a nezávazná rezervace."/>
+  <!-- Tailwind CSS via CDN pro rychlý start (na produkci můžeš nahradit vlastním CSS) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Drobné doplňky mimo Tailwind */
+    .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+    .container-narrow { max-width: 980px; }
+  </style>
+</head>
+<body class="bg-white text-slate-800">
+  <!-- === Top bar / Logo + menu === -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#top" class="font-semibold tracking-wide text-lg">Sunhill · <span class="text-amber-600">Golden&nbsp;Ray</span></a>
+      <nav class="hidden md:flex gap-6 text-sm">
+        <a href="#about" class="hover:text-amber-600">O apartmánu</a>
+        <a href="#pricing" class="hover:text-amber-600">Ceník</a>
+        <a href="#availability" class="hover:text-amber-600">Dostupnost</a>
+        <a href="#booking" class="hover:text-amber-600">Rezervace</a>
+        <a href="#gallery" class="hover:text-amber-600">Galerie</a>
+        <a href="#location" class="hover:text-amber-600">Lokalita</a>
+        <a href="#terms" class="hover:text-amber-600">Podmínky</a>
+        <a href="#contact" class="hover:text-amber-600">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- === Hero === -->
+  <section id="top" class="relative h-[68vh] min-h-[420px] w-full flex items-end" style="background:url('hero.jpg') center/cover no-repeat;">
+    <div class="w-full">
+      <div class="container mx-auto px-4 pb-10">
+        <div class="glass shadow-soft rounded-2xl p-6 md:p-8">
+          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Primošten Resort <span class="text-amber-600">Sunhill</span> · Golden Ray</h1>
+          <p class="mt-3 md:mt-4 text-slate-700 max-w-2xl">Moderní, čistý apartmán v Primoštenu. Výhled, klid a pár minut k moři. Online dostupnost a nezávazná poptávka přímo u majitele.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="#availability" class="px-5 py-3 bg-amber-600 text-white rounded-xl shadow-soft hover:bg-amber-700">Zkontrolovat dostupnost</a>
+            <a href="#booking" class="px-5 py-3 border border-slate-300 rounded-xl hover:border-slate-400">Nezávazná rezervace</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- === About === -->
+  <section id="about" class="py-14">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">O apartmánu</h2>
+      <p class="mt-4 text-slate-700">Jednopokojový / dvoupokojový apartmán (doplnit) s plně vybavenou kuchyní, terasou a parkováním. Ideální pro páry nebo rodiny. <span class="italic text-slate-500">(Doplníme přesné vybavení – klimatizace, Wi‑Fi, myčka, pračka…)</span></p>
+      <ul class="mt-4 grid md:grid-cols-3 gap-3 text-sm">
+        <li class="p-3 rounded-xl border">🔌 Wi‑Fi</li>
+        <li class="p-3 rounded-xl border">❄️ Klimatizace</li>
+        <li class="p-3 rounded-xl border">🅿️ Parkování</li>
+        <li class="p-3 rounded-xl border">🌊 Blízko moře</li>
+        <li class="p-3 rounded-xl border">🛏️ Kapacita: <span class="italic">(doplnit)</span></li>
+        <li class="p-3 rounded-xl border">🚭 Nekuřácké</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === Pricing === -->
+  <section id="pricing" class="py-14 bg-slate-50">
+    <div class="container container-narrow mx-auto px-4">
+      <div class="flex items-center gap-3">
+        <h2 class="text-2xl md:text-3xl font-semibold">Ceník</h2>
+        <span id="priceBadge" class="ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-amber-100 text-amber-800">Dočasné ceny (příprava webu)</span>
+      </div>
+      <p class="mt-2 text-sm text-slate-600">Rezervace je vytvořena po uhrazení rezervačního poplatku <strong>30&nbsp;%</strong> z celkové ceny pobytu.</p>
+
+      <div class="mt-6 grid md:grid-cols-3 gap-4">
+        <!-- Květen/Říjen -->
+        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+          <div class="text-sm text-slate-500">Květen · Říjen</div>
+          <div class="mt-2 text-3xl font-semibold"><span id="priceLow">80</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
+        </div>
+        <!-- Červen/Září -->
+        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+          <div class="text-sm text-slate-500">Červen · Září</div>
+          <div class="mt-2 text-3xl font-semibold"><span id="priceMid">120</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
+        </div>
+        <!-- Červenec/Srpen -->
+        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+          <div class="text-sm text-slate-500">Červenec · Srpen</div>
+          <div class="mt-2 text-3xl font-semibold"><span id="priceHigh">160</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
+        </div>
+      </div>
+
+      <details class="mt-6 text-sm text-slate-600">
+        <summary class="cursor-pointer select-none">Přepnout na finální ceny (180 / 140 / 100 €)</summary>
+        <div class="mt-3 p-4 border rounded-xl">
+          <p>Tento přepínač je jen pro nás (správu webu). V ostré verzi necháme pouze jednu sadu cen.</p>
+          <button id="switchPrices" class="mt-3 px-4 py-2 rounded-lg bg-slate-900 text-white">Přepnout ceny</button>
+          <p id="priceNote" class="mt-2"></p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- === Availability / Calendar === -->
+  <section id="availability" class="py-14">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Dostupnost</h2>
+      <p class="mt-2 text-slate-600">Kalendář volných termínů – vždy aktuální. Lze rezervovat přímo níže.</p>
+
+      <!-- VARIANTA A: vložený rezervační kalendář (např. Koalendar / SimplyBook / Reservio) -->
+      <!-- Nahraď src vlastní URL widgetu; výška lze upravit -->
+      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
+        <iframe title="Rezervační kalendář" src="https://koalendar.com/e/your-widget" style="width:100%; height:760px; border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+      <!-- VARIANTA B: jen zobrazení dostupnosti z Google Kalendáře (volitelné) -->
+      <!--
+      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
+        <iframe src="https://calendar.google.com/calendar/embed?src=PUBLIC_KALENDAR&ctz=Europe%2FPrague" style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+      </div>
+      -->
+
+      <p class="mt-4 text-sm text-slate-500">Tip: Minimalizujeme krátké pobyty. U pobytů kratších než <strong>7 nocí</strong> host zajišťuje závěrečný úklid sám (nebo lze objednat placený úklid – cena na dotaz).</p>
+    </div>
+  </section>
+
+  <!-- === Booking form (fallback / nezávazná poptávka) === -->
+  <section id="booking" class="py-14 bg-slate-50">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Nezávazná rezervace</h2>
+      <p class="mt-2 text-slate-600">Preferujeme rezervace přes kalendář výše. Pokud ti to nevyhovuje, můžeš poslat nezávazný dotaz formulářem:</p>
+
+      <form class="mt-6 grid md:grid-cols-2 gap-4" name="contact" netlify>
+        <input type="hidden" name="form-name" value="contact">
+        <label class="block">
+          <span class="text-sm">Jméno a příjmení</span>
+          <input name="name" required class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="Např. Jana Nováková" />
+        </label>
+        <label class="block">
+          <span class="text-sm">E‑mail</span>
+          <input name="email" type="email" required class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="jmeno@email.cz" />
+        </label>
+        <label class="block">
+          <span class="text-sm">Termín od</span>
+          <input name="from" type="date" required class="mt-1 w-full border rounded-xl px-3 py-2" />
+        </label>
+        <label class="block">
+          <span class="text-sm">Termín do</span>
+          <input name="to" type="date" required class="mt-1 w-full border rounded-xl px-3 py-2" />
+        </label>
+        <label class="block md:col-span-2">
+          <span class="text-sm">Zpráva</span>
+          <textarea name="message" rows="4" class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="Počet osob, speciální požadavky…"></textarea>
+        </label>
+        <div class="md:col-span-2 flex items-center justify-between">
+          <div class="text-sm text-slate-600">Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.</div>
+          <button class="px-5 py-3 bg-slate-900 text-white rounded-xl">Odeslat dotaz</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- === Gallery === -->
+  <section id="gallery" class="py-14">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Galerie</h2>
+      <p class="mt-2 text-slate-600">Nahraj vlastní fotky do složky <code>/img/</code> a vyměň cesty níže (aktuálně jen zástupné obrázky).</p>
+      <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
+        <img src="img/1.jpg" alt="Interiér" class="rounded-xl object-cover aspect-[4/3]"/>
+        <img src="img/2.jpg" alt="Ložnice" class="rounded-xl object-cover aspect-[4/3]"/>
+        <img src="img/3.jpg" alt="Kuchyně" class="rounded-xl object-cover aspect-[4/3]"/>
+        <img src="img/4.jpg" alt="Terasa" class="rounded-xl object-cover aspect-[4/3]"/>
+        <img src="img/5.jpg" alt="Pláž" class="rounded-xl object-cover aspect-[4/3]"/>
+        <img src="img/6.jpg" alt="Okolí" class="rounded-xl object-cover aspect-[4/3]"/>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Location === -->
+  <section id="location" class="py-14 bg-slate-50">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
+      <p class="mt-2 text-slate-600">Adresa: <span class="italic">(doplnit přesnou adresu)</span>. Parkování u objektu. Obchod a pláž v docházkové vzdálenosti.</p>
+      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
+        <!-- Nahraď vlastní mapou (sdílení z Google Maps → vložit mapu) -->
+        <iframe title="Mapa" src="https://www.google.com/maps?q=Primosten&output=embed" width="100%" height="420" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- === Terms === -->
+  <section id="terms" class="py-14">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Platební a storno podmínky</h2>
+      <ul class="mt-4 space-y-2 text-slate-700 list-disc ml-5">
+        <li>Rezervace vzniká po potvrzení a úhradě <strong>rezervačního poplatku 30&nbsp;%</strong> z ceny pobytu.</li>
+        <li>Zbytek ceny splatný při příjezdu / před příjezdem (doplnit preferenci).</li>
+        <li>Storno podmínky: použijeme text „od Kláry“ (doplníme přesné znění).</li>
+        <li>Pobyty <strong>7+ nocí</strong> – <strong>bez závěrečného úklidu</strong>. Kratší pobyty: host zajistí úklid sám, nebo lze objednat placený úklid (cena na dotaz).</li>
+        <li>Check‑in / Check‑out: (doplnit např. 15:00 / 10:00).</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- === Contact === -->
+  <section id="contact" class="py-14 bg-slate-900 text-white">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Kontakt</h2>
+      <div class="mt-4 grid md:grid-cols-3 gap-6 text-slate-100">
+        <div>
+          <div class="text-sm text-slate-300">E‑mail</div>
+          <a href="mailto:info@sunhill-goldenray.example" class="underline">info@sunhill-goldenray.example</a>
+        </div>
+        <div>
+          <div class="text-sm text-slate-300">Telefon</div>
+          <a href="tel:+420000000000" class="underline">+420 000 000 000</a>
+        </div>
+        <div>
+          <div class="text-sm text-slate-300">Sítě</div>
+          <div class="flex gap-4">
+            <a class="underline" href="#">Instagram</a>
+            <a class="underline" href="#">Facebook</a>
+          </div>
+        </div>
+      </div>
+      <p class="mt-6 text-sm text-slate-300">© <span id="year"></span> Sunhill · Golden Ray, Primošten.</p>
+    </div>
+  </section>
+
+  <!-- === Footer small === -->
+  <footer class="py-6 text-center text-xs text-slate-500">Web běží jako statická stránka (GitLab Pages). Vytvořeno s ♥.</footer>
+
+  <script>
+    // Dynamický rok ve footeru
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Přepínač cen: defaultně "dočasné" (80/120/160). Po přepnutí finální (100/140/180) a naopak.
+    const priceLow = document.getElementById('priceLow');
+    const priceMid = document.getElementById('priceMid');
+    const priceHigh = document.getElementById('priceHigh');
+    const priceBadge = document.getElementById('priceBadge');
+    const switchBtn = document.getElementById('switchPrices');
+    const priceNote = document.getElementById('priceNote');
+
+    let isFinal = false; // false = dočasné (80/120/160), true = finální (100/140/180)
+
+    function setPrices() {
+      if (isFinal) {
+        priceLow.textContent = '100';
+        priceMid.textContent = '140';
+        priceHigh.textContent = '180';
+        priceBadge.textContent = 'Finální ceny';
+        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-800';
+        priceNote.textContent = 'Zobrazeny finální ceny. Pro návrat klikni znovu.';
+      } else {
+        priceLow.textContent = '80';
+        priceMid.textContent = '120';
+        priceHigh.textContent = '160';
+        priceBadge.textContent = 'Dočasné ceny (příprava webu)';
+        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-amber-100 text-amber-800';
+        priceNote.textContent = 'Zobrazeny dočasné ceny (80/120/160 €).';
+      }
+    }
+
+    if (switchBtn) {
+      switchBtn.addEventListener('click', function(){
+        isFinal = !isFinal;
+        setPrices();
+      });
+    }
+
+    setPrices();
+  </script>
+</body>
+</html>
