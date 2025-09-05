@@ -119,7 +119,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   </div>
 </section>
 
-  <!-- === Rezervace (Reenio) === -->
+ <!-- === Rezervace (Reenio) === -->
 <section id="booking" class="py-14 bg-zinc-950">
   <div class="container container-narrow mx-auto px-4">
     <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Rezervace</h2>
@@ -143,7 +143,17 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
       <div class="p-2">
         <div class="reenio-iframe" data-size="auto"></div>
       </div>
+    </div>
 
+    <!-- Skripty widgetů musí být až ZA HTML prvky, které inicializují -->
+    <script src="https://reenio.cz/cs/GIZDSMRS/widget-reservation-btn.js" async defer></script>
+    <script src="https://reenio.cz/cs/GIZDSMRS/widget-iframe.js" async defer></script>
+
+    <p class="mt-6 text-sm text-zinc-500">
+      Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
+    </p>
+  </div>
+</section>
 
   <!-- === Booking form (fallback / nezávazná poptávka) === -->
   <section id="booking" class="py-14 bg-slate-900">
