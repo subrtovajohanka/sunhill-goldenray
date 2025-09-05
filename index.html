@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="cs">
 <head>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Primošten Resort Sunhill Golden Ray</title>
@@ -20,7 +21,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   <div class="container mx-auto px-4 py-3 flex items-center justify-between">
     <!-- Logo + text -->
     <a href="#top" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
-      <img src="img/logo.png" alt="Sunhill Golden Ray" class="h-8 w-auto hidden sm:block">
+      <img src="logo.png" alt="Sunhill Golden Ray" class="h-8 w-auto hidden sm:block">
       <span>Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
     </a>
 
@@ -48,6 +49,23 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
       Menu
     </button>
   </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobileNav"
+       class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
+    <div class="container mx-auto px-4 py-3 flex flex-col">
+      <a href="#about" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">O apartmánu</a>
+      <a href="#pricing" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Ceník</a>
+      <a href="#availability" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Dostupnost</a>
+      <a href="#booking" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Rezervace</a>
+      <a href="#gallery" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Galerie</a>
+      <a href="#location" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Lokalita</a>
+      <a href="#explore" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Tipy na výlety</a>
+      <a href="#terms" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Podmínky</a>
+      <a href="#contact" class="py-2 hover:text-[var(--gold)]">Kontakt</a>
+    </div>
+  </div>
+</header>
 
   <!-- Mobile drawer -->
   <div id="mobileNav"
@@ -185,7 +203,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 </section>
 
  <!-- === Nezávazná poptávka (fallback) === -->
-<section id="booking" class="py-14 bg-zinc-950">
+<section id="inquiry" class="py-14 bg-zinc-950">
   <div class="container container-narrow mx-auto px-4">
     <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Nezávazná poptávka</h2>
     <p class="mt-2 text-zinc-400">
@@ -403,46 +421,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     // Dynamický rok ve footeru
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Přepínač cen: defaultně "dočasné" (80/120/160). Po přepnutí finální (100/140/180) a naopak.
-    const priceLow = document.getElementById('priceLow');
-    const priceMid = document.getElementById('priceMid');
-    const priceHigh = document.getElementById('priceHigh');
-    const priceBadge = document.getElementById('priceBadge');
-    const switchBtn = document.getElementById('switchPrices');
-    const priceNote = document.getElementById('priceNote');
-
-    let isFinal = false; // false = dočasné (80/120/160), true = finální (100/140/180)
-
-    function setPrices() {
-      if (isFinal) {
-        priceLow.textContent = '100';
-        priceMid.textContent = '140';
-        priceHigh.textContent = '180';
-        priceBadge.textContent = 'Finální ceny';
-        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-slate-700 text-slate-100';
-        priceNote.textContent = 'Zobrazeny finální ceny. Pro návrat klikni znovu.';
-      } else {
-        priceLow.textContent = '80';
-        priceMid.textContent = '120';
-        priceHigh.textContent = '160';
-        priceBadge.textContent = 'Dočasné ceny (příprava webu)';
-        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-teal-900 text-teal-200';
-        priceNote.textContent = 'Zobrazeny dočasné ceny (80/120/160 €).';
-      }
-    }
-
-    if (switchBtn) {
-      switchBtn.addEventListener('click', function(){
-        isFinal = !isFinal;
-        setPrices();
-      });
-    }
-
-    setPrices();
-  <script>
-  (function () {
+   <script>
+  document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('menuBtn');
     const nav = document.getElementById('mobileNav');
+    if (!btn || !nav) return;
 
     function closeNav() {
       nav.classList.add('hidden');
@@ -455,15 +438,9 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     }
 
     btn.addEventListener('click', toggleNav);
-
-    // Zavřít po kliknutí na odkaz
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
-
-    // Zavřít klávesou Esc
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeNav();
-    });
-  })();
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNav(); });
+  });
 </script>
 </body>
 </html>
