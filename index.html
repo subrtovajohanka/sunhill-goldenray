@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Resort Sunhill · Golden Ray</title>
+<title>Resort Sunhill Golden Ray</title>
 <meta name="description" content="Soukromé ubytování v Primoštenu – Sunhill · Golden Ray. Moderní a čistý apartmán kousek od moře. Online dostupnost a nezávazná rezervace."/>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 :root { --gold:#d4af37; }
-.glass { background: rgba(12,14,18,0.6); backdrop-filter: blur(8px); }
+.glass { background: rgba(12,14,18,0.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.06); }
 .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.3); }
 .container-narrow { max-width: 980px; }
 h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
@@ -18,9 +18,8 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 <!-- === Top bar / Logo + menu === -->
 <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
 <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-<a href="#top" class="flex items-center gap-2 font-semibold tracking-wide text-lg">
-<img src="img/logo.png" alt="Resort Sunhill Golden Ray logo" class="h-8 md:h-10"/>
-<span class="text-gold-400">Sunhill · Golden Ray</span>
+<a href="#top" class="font-semibold tracking-wide text-lg">
+<span class="text-gold-400">Sunhill Golden Ray</span>
 </a>
 <nav class="hidden md:flex gap-6 text-sm">
 <a href="#about" class="hover:text-gold-400">O apartmánu</a>
@@ -37,11 +36,11 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 </header>
 
   <!-- === Hero === -->
-  <section id="top" class="relative h-[70vh] min-h-[520px] w-full flex items-end" style="background:url('primosten-hero.png') center/cover no-repeat;">
-    <div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/35 to-black/10"></div>
-    <div class="w-full relative">
-    <div class="container mx-auto px-4 pb-12">
-      <div class="glass shadow-soft rounded-2xl p-6 md:p-10 max-w-4xl">
+  <section id="top" class="relative h-[70vh] min-h-[520px] w-full flex items-end" style="background:url('img/primosten-hero.jpg') center 35%/cover no-repeat;">>
+    ="absolute inset-0 bg-gradient-to-t from-black/55 via-black/35 to-black/10"></div>
+    ="w-full relative">
+      <div class="container mx-auto px-4 pb-10">
+      <div class="glass shadow-soft rounded-2xl p-6 md:p-8 max-w-3xl md:ml-6 md:mb-4">
 <!-- Logo dočasně vypnuto -->
 <!-- <img src="img/logo.png" alt="Resort Sunhill Golden Ray logo" class="mx-auto h-20 md:h-28 mb-6"/> -->
       <h1 class="text-4xl md:text-6xl font-semibold tracking-wide"><span class="text-[var(--gold)]">Primošten</span> Resort Sunhill · Golden Ray</h1>
