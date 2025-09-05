@@ -290,18 +290,61 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     <p class="mt-2 text-slate-400">Fotografie apartmánu a okolí Primoštenu.</p>
 
     <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-      <img src="img/loznice.jpg"  alt="Ložnice apartmánu"           class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/kuchyne.jpg"  alt="Kuchyně apartmánu"           class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/koupelna.jpg" alt="Koupelna – sprcha/umývadlo"  class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/koupelna2.jpg" alt="Koupelna – další pohled"    class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/wc.jpg"       alt="Samostatné WC"               class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/bazen.jpg"    alt="Bazén v areálu / poblíž"     class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/vyhled.jpg"   alt="Výhled z apartmánu / terasy" class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/plaz.jpg"     alt="Pláž poblíž apartmánu"       class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-      <img src="img/okoli.jpg"    alt="Okolí Primoštenu"            class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/loznice.jpg"  alt="Ložnice apartmánu"           class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/kuchyne.jpg"  alt="Kuchyně apartmánu"           class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/koupelna.jpg" alt="Koupelna – sprcha/umývadlo"  class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/koupelna2.jpg" alt="Koupelna – další pohled"    class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/wc.jpg"       alt="Samostatné WC"               class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/bazen.jpg"    alt="Bazén v areálu / poblíž"     class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/vyhled.jpg"   alt="Výhled z apartmánu / terasy" class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/plaz.jpg"     alt="Pláž poblíž apartmánu"       class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+      <img src="img/okoli.jpg"    alt="Okolí Primoštenu"            class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
     </div>
   </div>
 </section>
+
+<!-- Lightbox -->
+<div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
+  <button id="closeLightbox" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
+  <img id="lightboxImg" src="" alt="" class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg">
+</div>
+
+<script>
+  const galleryImgs = document.querySelectorAll('.gallery-img');
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const closeBtn = document.getElementById('closeLightbox');
+
+  galleryImgs.forEach(img => {
+    img.addEventListener('click', () => {
+      lightboxImg.src = img.src;
+      lightbox.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // zakáže scroll na pozadí
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+  });
+
+  // Zavření klikem mimo obrázek
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+
+  // Zavření klávesou ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      lightbox.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+  });
+</script>
+
 
   <!-- === Explore === -->
   <section id="explore" class="py-14 bg-slate-900">
