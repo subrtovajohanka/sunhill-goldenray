@@ -120,27 +120,59 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 </section>
 
   <!-- === Availability / Calendar === -->
-  <section id="availability" class="py-14">
-    <div class="container container-narrow mx-auto px-4">
-      <h2 class="text-2xl md:text-3xl font-semibold">Dostupnost</h2>
-      <p class="mt-2 text-slate-400">Kalendář volných termínů – vždy aktuální. Lze rezervovat přímo níže.</p>
+ <section id="booking" class="py-14 bg-zinc-950">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Rezervace</h2>
+    <p class="mt-2 text-zinc-400">Rezervaci můžeš provést přímo online kliknutím na tlačítko níže:</p>
 
-      <!-- VARIANTA A: vložený rezervační kalendář (např. Koalendar / SimplyBook / Reservio) -->
-      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
-        <iframe title="Rezervační kalendář" src="https://koalendar.com/e/your-widget" style="width:100%; height:760px; border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-
-      <!-- VARIANTA B: zobrazení dostupnosti z Google Kalendáře (bez rezervací) -->
-      <!-- Pokud chceš jen ukázat volné termíny ze sdíleného Google Kalendáře: v Google Calendar nastav veřejné sdílení a vlož zde embed URL. -->
-      <!--
-      <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
-        <iframe src="https://calendar.google.com/calendar/embed?src=PUBLIC_KALENDAR&mode=MONTH&showTitle=0&showPrint=0&showTz=0&ctz=Europe%2FPrague" style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
-      </div>
-      -->
-
-      <p class="mt-4 text-sm text-slate-500">Tip: Minimalizujeme krátké pobyty. U pobytů kratších než <strong>7 nocí</strong> host zajišťuje závěrečný úklid sám (nebo lze objednat placený úklid – cena na dotaz).</p>
+    <!-- Reenio tlačítko -->
+    <div class="mt-6">
+      <a href="http://reenio.cz/cs/redirect/reservationpage/22922"
+         class="reenio-reservation-btn px-6 py-3 rounded-xl font-semibold text-white bg-[var(--gold)] hover:bg-yellow-500 transition"
+         target="_blank" data-no-dialog="1">
+         Nová rezervace
+      </a>
     </div>
-  </section>
+
+    <script src="https://reenio.cz/cs/GIZDSMRS/widget-reservation-btn.js" async defer></script>
+
+    <p class="mt-6 text-sm text-zinc-500">
+      Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
+    </p>
+  </div>
+</section>
+  <iframe
+    title="Rezervační kalendář"
+    src="https://primosten-resort-sunhill-golden-ray.rezervace.online/cs/terms/2026-05-31;viewMode=day"
+    style="width:100%; height:760px; border:0;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowtransparency="true">
+  </iframe>
+</div>
+<!-- REENIO – vložený kalendář -->
+<div class="mt-6 rounded-2xl overflow-hidden border border-zinc-800 shadow-soft">
+  
+  <!-- Rezervační tlačítko -->
+  <div class="mt-4 flex items-center gap-3 px-4">
+    <a href="http://reenio.cz/cs/redirect/reservationpage/22922"
+       target="_blank" rel="noopener"
+       class="inline-flex items-center px-4 py-2 rounded-xl bg-[var(--gold)] text-zinc-950 font-semibold hover:bg-yellow-500 transition">
+       Nová rezervace
+    </a>
+    <span class="text-sm text-zinc-400">Otevře rezervační stránku v novém okně (doporučeno na mobilu)</span>
+  </div>
+
+  <!-- Kalendář -->
+  <iframe
+    title="Rezervační kalendář"
+    src="https://primosten-resort-sunhill-golden-ray.rezervace.online/cs/terms/2026-05-31;viewMode=day"
+    style="width:100%; height:760px; border:0;"
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+    allowtransparency="true">
+  </iframe>
+</div>
 
   <!-- === Booking form (fallback / nezávazná poptávka) === -->
   <section id="booking" class="py-14 bg-slate-900">
