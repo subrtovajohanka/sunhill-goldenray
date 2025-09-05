@@ -415,21 +415,34 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 <!-- Lightbox mimo grid -->
 <div id="lightbox" class="fixed inset-0 bg-black/90 hidden flex items-center justify-center z-50">
   <button id="closeLightbox" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+   <!-- Šipka doleva -->
+  <button id="prevBtn" class="absolute left-4 text-white text-4xl px-3 py-2">&larr;</button>
+  
   <img id="lightboxImg" src="" alt="" class="max-h-[90%] max-w-[90%] rounded-lg shadow-lg mx-auto">
+  <!-- Šipka doprava -->
+  <button id="nextBtn" class="absolute right-4 text-white text-4xl px-3 py-2">&rarr;</button>
 </div>
 
 <script>
-  const items = document.querySelectorAll('.gallery-item');
+  const items = document.querySelectorAll('.gallery-item img');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const closeBtn = document.getElementById('closeLightbox');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
 
-  items.forEach(item => {
-    item.addEventListener('click', () => {
-      const img = item.querySelector('img');
-      lightboxImg.src = img.src;
-      lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+  let currentIndex = 0;
+
+  function showImage(index) {
+    lightboxImg.src = items[index].src;
+    lightbox.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    currentIndex = index;
+  }
+
+  items.forEach((img, index) => {
+    img.addEventListener('click', () => {
+      showImage(index);
     });
   });
 
@@ -437,10 +450,32 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     lightbox.classList.add('hidden');
     document.body.style.overflow = 'auto';
   }
+
+  function showPrev() {
+    currentIndex = (currentIndex - 1 + items.length) % items.length;
+    showImage(currentIndex);
+  }
+
+  function showNext() {
+    currentIndex = (currentIndex + 1) % items.length;
+    showImage(currentIndex);
+  }
+
   closeBtn.addEventListener('click', closeLB);
-  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
+  prevBtn.addEventListener('click', showPrev);
+  nextBtn.addEventListener('click', showNext);
+
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLB();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeLB();
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+  });
 </script>
+  
   <!-- === Explore === -->
   <section id="explore" class="py-14 bg-slate-900">
     <div class="container container-narrow mx-auto px-4">
