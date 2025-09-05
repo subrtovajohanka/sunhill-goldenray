@@ -39,7 +39,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     </nav>
 
     <!-- Mobile menu button -->
-    <button id="menuBtn"
+    <button id="menuBtn" type="button"
             class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
             aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -399,28 +399,30 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
   <!-- === Footer small === -->
 <footer class="py-6 text-center text-xs text-slate-500">Web běží jako statická stránka (GitHub Pages). Vytvořeno s ♥.</footer>
   <script>
-    // Dynamický rok ve footeru
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-   <script>
   document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('menuBtn');
-    const nav = document.getElementById('mobileNav');
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('mobileNav');
     if (!btn || !nav) return;
 
     function closeNav() {
-      nav.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
+      if (!nav.classList.contains('hidden')) {
+        nav.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
     }
     function toggleNav() {
-      const isHidden = nav.classList.contains('hidden');
+      var isHidden = nav.classList.contains('hidden');
       nav.classList.toggle('hidden');
       btn.setAttribute('aria-expanded', String(isHidden));
     }
 
     btn.addEventListener('click', toggleNav);
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeNav(); });
+    Array.prototype.forEach.call(nav.querySelectorAll('a'), function(a){
+      a.addEventListener('click', closeNav);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeNav();
+    });
   });
 </script>
 </body>
