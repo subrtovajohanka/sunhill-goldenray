@@ -18,25 +18,54 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 <!-- === Top bar / Logo + menu === -->
 <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
   <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo + text -->
     <a href="#top" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
-      <!-- Logo vlevo -->
-      <img src="logo.png" alt="Resort Sunhill Golden Ray logo" class="h-8 w-auto"/>
-      <!-- Text -->
-      <span class="text-gold-400">Primošten Resort Sunhill Golden Ray</span>
+      <img src="img/logo.png" alt="Sunhill Golden Ray" class="h-8 w-auto hidden sm:block">
+      <span>Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
     </a>
+
+    <!-- Desktop menu -->
     <nav class="hidden md:flex gap-6 text-sm">
-      <a href="#about" class="hover:text-gold-400">O apartmánu</a>
-      <a href="#pricing" class="hover:text-gold-400">Ceník</a>
-      <a href="#availability" class="hover:text-gold-400">Dostupnost</a>
-      <a href="#booking" class="hover:text-gold-400">Rezervace</a>
-      <a href="#gallery" class="hover:text-gold-400">Galerie</a>
-      <a href="#location" class="hover:text-gold-400">Lokalita</a>
-      <a href="#explore" class="hover:text-gold-400">Tipy na výlety</a>
-      <a href="#terms" class="hover:text-gold-400">Podmínky</a>
-      <a href="#contact" class="hover:text-gold-400">Kontakt</a>
+      <a href="#about" class="hover:text-[var(--gold)]">O apartmánu</a>
+      <a href="#pricing" class="hover:text-[var(--gold)]">Ceník</a>
+      <a href="#availability" class="hover:text-[var(--gold)]">Dostupnost</a>
+      <a href="#booking" class="hover:text-[var(--gold)]">Rezervace</a>
+      <a href="#gallery" class="hover:text-[var(--gold)]">Galerie</a>
+      <a href="#location" class="hover:text-[var(--gold)]">Lokalita</a>
+      <a href="#explore" class="hover:text-[var(--gold)]">Tipy na výlety</a>
+      <a href="#terms" class="hover:text-[var(--gold)]">Podmínky</a>
+      <a href="#contact" class="hover:text-[var(--gold)]">Kontakt</a>
     </nav>
+
+    <!-- Mobile menu button -->
+    <button id="menuBtn"
+            class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
+            aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      Menu
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobileNav"
+       class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
+    <div class="container mx-auto px-4 py-3 flex flex-col">
+      <a href="#about" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">O apartmánu</a>
+      <a href="#pricing" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Ceník</a>
+      <a href="#availability" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Dostupnost</a>
+      <a href="#booking" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Rezervace</a>
+      <a href="#gallery" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Galerie</a>
+      <a href="#location" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Lokalita</a>
+      <a href="#explore" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Tipy na výlety</a>
+      <a href="#terms" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Podmínky</a>
+      <a href="#contact" class="py-2 hover:text-[var(--gold)]">Kontakt</a>
+    </div>
   </div>
 </header>
+
 
   <!-- === Hero === -->
 <section id="top"
@@ -410,6 +439,31 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     }
 
     setPrices();
-  </script>
+  <script>
+  (function () {
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mobileNav');
+
+    function closeNav() {
+      nav.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function toggleNav() {
+      const isHidden = nav.classList.contains('hidden');
+      nav.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(isHidden));
+    }
+
+    btn.addEventListener('click', toggleNav);
+
+    // Zavřít po kliknutí na odkaz
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+
+    // Zavřít klávesou Esc
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeNav();
+    });
+  })();
+</script>
 </body>
 </html>
