@@ -9,26 +9,26 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     /* Drobné doplňky mimo Tailwind */
-    .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+.glass { background: rgba(15,16,20,0.6); backdrop-filter: blur(8px); }
     .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
     .container-narrow { max-width: 980px; }
   </style>
 </head>
-<body class="bg-white text-slate-800">
+<body class="bg-slate-950 text-slate-100">
   <!-- === Top bar / Logo + menu === -->
-  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="font-semibold tracking-wide text-lg">Sunhill · <span class="text-amber-600">Golden&nbsp;Ray</span></a>
+      <a href="#top" class="font-semibold tracking-wide text-lg">Sunhill · <span class="text-teal-400">Golden&nbsp;Ray</span></a>
       <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#about" class="hover:text-amber-600">O apartmánu</a>
-        <a href="#pricing" class="hover:text-amber-600">Ceník</a>
-        <a href="#availability" class="hover:text-amber-600">Dostupnost</a>
-        <a href="#booking" class="hover:text-amber-600">Rezervace</a>
-        <a href="#gallery" class="hover:text-amber-600">Galerie</a>
-        <a href="#location" class="hover:text-amber-600">Lokalita</a>
-        <a href="#explore" class="hover:text-amber-600">Tipy na výlety</a>
-        <a href="#terms" class="hover:text-amber-600">Podmínky</a>
-        <a href="#contact" class="hover:text-amber-600">Kontakt</a>
+        <a href="#about" class="hover:text-teal-400">O apartmánu</a>
+        <a href="#pricing" class="hover:text-teal-400">Ceník</a>
+        <a href="#availability" class="hover:text-teal-400">Dostupnost</a>
+        <a href="#booking" class="hover:text-teal-400">Rezervace</a>
+        <a href="#gallery" class="hover:text-teal-400">Galerie</a>
+        <a href="#location" class="hover:text-teal-400">Lokalita</a>
+        <a href="#explore" class="hover:text-teal-400">Tipy na výlety</a>
+        <a href="#terms" class="hover:text-teal-400">Podmínky</a>
+        <a href="#contact" class="hover:text-teal-400">Kontakt</a>
       </nav>
     </div>
   </header>
@@ -38,11 +38,11 @@
     <div class="w-full">
       <div class="container mx-auto px-4 pb-10">
         <div class="glass shadow-soft rounded-2xl p-6 md:p-8">
-          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Primošten Resort <span class="text-amber-600">Sunhill</span> · Golden Ray</h1>
-          <p class="mt-3 md:mt-4 text-slate-700 max-w-2xl">Moderní, čistý apartmán v Primoštenu. Výhled, klid a pár minut k moři. Online dostupnost a nezávazná poptávka přímo u majitele.</p>
+          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Primošten Resort <span class="text-teal-400">Sunhill</span> · Golden Ray</h1>
+          <p class="mt-3 md:mt-4 text-slate-300 max-w-2xl">Moderní, čistý apartmán v Primoštenu. Výhled, klid a pár minut k moři. Online dostupnost a nezávazná poptávka přímo u majitele.</p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#availability" class="px-5 py-3 bg-amber-600 text-white rounded-xl shadow-soft hover:bg-amber-700">Zkontrolovat dostupnost</a>
-            <a href="#booking" class="px-5 py-3 border border-slate-300 rounded-xl hover:border-slate-400">Nezávazná rezervace</a>
+            <a href="#availability" class="px-5 py-3 bg-teal-600 text-white rounded-xl shadow-soft hover:bg-teal-700">Zkontrolovat dostupnost</a>
+            <a href="#booking" class="px-5 py-3 border border-slate-600 text-slate-100 rounded-xl hover:border-slate-400">Nezávazná rezervace</a>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
   <section id="about" class="py-14">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">O apartmánu</h2>
-      <p class="mt-4 text-slate-700">Jednopokojový / dvoupokojový apartmán (doplnit) s plně vybavenou kuchyní, terasou a parkováním. Ideální pro páry nebo rodiny. <span class="italic text-slate-500">(Doplníme přesné vybavení – klimatizace, Wi‑Fi, myčka, pračka…)</span></p>
+      <p class="mt-4 text-slate-300">Jednopokojový / dvoupokojový apartmán (doplnit) s plně vybavenou kuchyní, terasou a parkováním. Ideální pro páry nebo rodiny. <span class="italic text-slate-500">(Doplníme přesné vybavení – klimatizace, Wi‑Fi, myčka, pračka…)</span></p>
       <ul class="mt-4 grid md:grid-cols-3 gap-3 text-sm">
         <li class="p-3 rounded-xl border">🔌 Wi‑Fi</li>
         <li class="p-3 rounded-xl border">❄️ Klimatizace</li>
@@ -66,33 +66,33 @@
   </section>
 
   <!-- === Pricing === -->
-  <section id="pricing" class="py-14 bg-slate-50">
+  <section id="pricing" class="py-14 bg-slate-900>
     <div class="container container-narrow mx-auto px-4">
       <div class="flex items-center gap-3">
         <h2 class="text-2xl md:text-3xl font-semibold">Ceník</h2>
-        <span id="priceBadge" class="ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-amber-100 text-amber-800">Dočasné ceny (příprava webu)</span>
+        <span id="priceBadge" class="ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-teal-900 text-teal-200">Dočasné ceny (příprava webu)</span>
       </div>
-      <p class="mt-2 text-sm text-slate-600">Rezervace je vytvořena po uhrazení rezervačního poplatku <strong>30&nbsp;%</strong> z celkové ceny pobytu.</p>
+      <p class="mt-2 text-sm text-slate-400">Rezervace je vytvořena po uhrazení rezervačního poplatku <strong>30&nbsp;%</strong> z celkové ceny pobytu.</p>
 
       <div class="mt-6 grid md:grid-cols-3 gap-4">
         <!-- Květen/Říjen -->
-        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+        <div class="p-5 bg-slate-900 rounded-2xl border shadow-soft">
           <div class="text-sm text-slate-500">Květen · Říjen</div>
           <div class="mt-2 text-3xl font-semibold"><span id="priceLow">80</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
         </div>
         <!-- Červen/Září -->
-        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+        <div class="p-5 bg-slate-900 rounded-2xl border shadow-soft">
           <div class="text-sm text-slate-500">Červen · Září</div>
           <div class="mt-2 text-3xl font-semibold"><span id="priceMid">120</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
         </div>
         <!-- Červenec/Srpen -->
-        <div class="p-5 bg-white rounded-2xl border shadow-soft">
+        <div class="p-5 bg-slate-900 rounded-2xl border shadow-soft">
           <div class="text-sm text-slate-500">Červenec · Srpen</div>
           <div class="mt-2 text-3xl font-semibold"><span id="priceHigh">160</span> € <span class="text-base font-normal text-slate-500">/ noc</span></div>
         </div>
       </div>
 
-      <details class="mt-6 text-sm text-slate-600">
+      <details class="mt-6 text-sm text-slate-400">
         <summary class="cursor-pointer select-none">Přepnout na finální ceny (180 / 140 / 100 €)</summary>
         <div class="mt-3 p-4 border rounded-xl">
           <p>Tento přepínač je jen pro nás (správu webu). V ostré verzi necháme pouze jednu sadu cen.</p>
@@ -107,7 +107,7 @@
   <section id="availability" class="py-14">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Dostupnost</h2>
-      <p class="mt-2 text-slate-600">Kalendář volných termínů – vždy aktuální. Lze rezervovat přímo níže.</p>
+      <p class="mt-2 text-slate-400">Kalendář volných termínů – vždy aktuální. Lze rezervovat přímo níže.</p>
 
       <!-- VARIANTA A: vložený rezervační kalendář (např. Koalendar / SimplyBook / Reservio) -->
       <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
@@ -127,10 +127,10 @@
   </section>
 
   <!-- === Booking form (fallback / nezávazná poptávka) === -->
-  <section id="booking" class="py-14 bg-slate-50">
+  <section id="booking" class="py-14 bg-slate-900>
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Nezávazná rezervace</h2>
-      <p class="mt-2 text-slate-600">Preferujeme rezervace přes kalendář výše. Pokud ti to nevyhovuje, můžeš poslat nezávazný dotaz formulářem:</p>
+      <p class="mt-2 text-slate-400">Preferujeme rezervace přes kalendář výše. Pokud ti to nevyhovuje, můžeš poslat nezávazný dotaz formulářem:</p>
 
       <form class="mt-6 grid md:grid-cols-2 gap-4" name="contact" netlify>
         <input type="hidden" name="form-name" value="contact">
@@ -155,7 +155,7 @@
           <textarea name="message" rows="4" class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="Počet osob, speciální požadavky…"></textarea>
         </label>
         <div class="md:col-span-2 flex items-center justify-between">
-          <div class="text-sm text-slate-600">Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.</div>
+          <div class="text-sm text-slate-400">Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.</div>
           <button class="px-5 py-3 bg-slate-900 text-white rounded-xl">Odeslat dotaz</button>
         </div>
       </form>
@@ -166,7 +166,7 @@
   <section id="gallery" class="py-14">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Galerie</h2>
-      <p class="mt-2 text-slate-600">Nahraj vlastní fotky do složky <code>/img/</code> a vyměň cesty níže (aktuálně jen zástupné obrázky).</p>
+      <p class="mt-2 text-slate-400">Nahraj vlastní fotky do složky <code>/img/</code> a vyměň cesty níže (aktuálně jen zástupné obrázky).</p>
       <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-3">
         <img src="img/1.jpg" alt="Interiér" class="rounded-xl object-cover aspect-[4/3]"/>
         <img src="img/2.jpg" alt="Ložnice" class="rounded-xl object-cover aspect-[4/3]"/>
@@ -179,33 +179,33 @@
   </section>
 
   <!-- === Explore === -->
-  <section id="explore" class="py-14 bg-white">
+  <section id="explore" class="py-14 bg-slate-900">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Tipy na výlety</h2>
-      <p class="mt-2 text-slate-600">Objev okolí Primoštenu – pláže, města a příroda. (Krátké karty s fotkou a odkazem – inspirováno stránkou „Explore“ z Pearl Residence.)</p>
+      <p class="mt-2 text-slate-400">Objev okolí Primoštenu – pláže, města a příroda. (Krátké karty s fotkou a odkazem – inspirováno stránkou „Explore“ z Pearl Residence.)</p>
       <div class="mt-6 grid md:grid-cols-3 gap-4">
         <article class="border rounded-2xl overflow-hidden shadow-soft">
           <img src="img/explore-krka.jpg" alt="Národní park Krka" class="w-full aspect-[4/3] object-cover"/>
           <div class="p-4">
             <h3 class="font-semibold">Národní park Krka</h3>
-            <p class="text-sm text-slate-600 mt-1">Vodopády, dřevěné chodníky a vyhlídky. ~1 h autem.</p>
-            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+            <p class="text-sm text-slate-400 mt-1">Vodopády, dřevěné chodníky a vyhlídky. ~1 h autem.</p>
+            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
           </div>
         </article>
         <article class="border rounded-2xl overflow-hidden shadow-soft">
           <img src="img/explore-sibenik.jpg" alt="Šibenik" class="w-full aspect-[4/3] object-cover"/>
           <div class="p-4">
             <h3 class="font-semibold">Šibenik</h3>
-            <p class="text-sm text-slate-600 mt-1">Historické město, katedrála sv. Jakuba (UNESCO). 30 min.</p>
-            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+            <p class="text-sm text-slate-400 mt-1">Historické město, katedrála sv. Jakuba (UNESCO). 30 min.</p>
+            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
           </div>
         </article>
         <article class="border rounded-2xl overflow-hidden shadow-soft">
           <img src="img/explore-trogir.jpg" alt="Trogir" class="w-full aspect-[4/3] object-cover"/>
           <div class="p-4">
             <h3 class="font-semibold">Trogir</h3>
-            <p class="text-sm text-slate-600 mt-1">Malebné historické centrum na ostrově. 45 min.</p>
-            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+            <p class="text-sm text-slate-400 mt-1">Malebné historické centrum na ostrově. 45 min.</p>
+            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
           </div>
         </article>
       </div>
@@ -213,10 +213,10 @@
   </section>
 
   <!-- === Location === -->
-  <section id="location" class="py-14 bg-slate-50">
+  <section id="location" class="py-14 bg-slate-900>
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
-      <p class="mt-2 text-slate-600">Adresa: <span class="italic">(doplnit přesnou adresu)</span>. Parkování u objektu. Obchod a pláž v docházkové vzdálenosti.</p>
+      <p class="mt-2 text-slate-400">Adresa: <span class="italic">(doplnit přesnou adresu)</span>. Parkování u objektu. Obchod a pláž v docházkové vzdálenosti.</p>
       <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
         <!-- Nahraď vlastní mapou (sdílení z Google Maps → vložit mapu) -->
         <iframe title="Mapa" src="https://www.google.com/maps?q=Primosten&output=embed" width="100%" height="420" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -228,7 +228,7 @@
   <section id="terms" class="py-14">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Platební a storno podmínky</h2>
-      <ul class="mt-4 space-y-2 text-slate-700 list-disc ml-5">
+      <ul class="mt-4 space-y-2 text-slate-300 list-disc ml-5">
         <li>Rezervace vzniká po potvrzení a úhradě <strong>rezervačního poplatku 30&nbsp;%</strong> z ceny pobytu.</li>
         <li>Zbytek ceny splatný při příjezdu / před příjezdem (doplnit preferenci).</li>
         <li>Pobyty <strong>7+ nocí</strong> – <strong>bez závěrečného úklidu</strong>. Kratší pobyty: host zajistí úklid sám, nebo lze objednat placený úklid (cena na dotaz).</li>
@@ -237,10 +237,10 @@
 
       <!-- Odkaz na PDF s kompletními podmínkami -->
       <div class="mt-6 p-4 border rounded-2xl">
-        <p class="text-sm text-slate-600">Kompletní všeobecné obchodní podmínky ke stažení:</p>
+        <p class="text-sm text-slate-400">Kompletní všeobecné obchodní podmínky ke stažení:</p>
         <a href="docs/podminky.pdf" class="inline-block mt-2 px-4 py-2 rounded-lg bg-slate-900 text-white">Stáhnout PDF</a>
         <p class="text-xs text-slate-500 mt-2">Soubor nahraj do repozitáře do složky <code>/docs/podminky.pdf</code>. Pokud chceš náhled na stránce, vlož dole uvedený iframe.</p>
-        <details class="mt-3 text-sm text-slate-600">
+        <details class="mt-3 text-sm text-slate-400">
           <summary class="cursor-pointer">Zobrazit PDF vložené přímo na stránce</summary>
           <div class="mt-3 rounded-xl overflow-hidden border">
             <iframe src="docs/podminky.pdf" width="100%" height="600" style="border:0" loading="lazy"></iframe>
@@ -305,7 +305,7 @@
         priceMid.textContent = '120';
         priceHigh.textContent = '160';
         priceBadge.textContent = 'Dočasné ceny (příprava webu)';
-        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-amber-100 text-amber-800';
+        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-teal-900 text-teal-200';
         priceNote.textContent = 'Zobrazeny dočasné ceny (80/120/160 €).';
       }
     }
