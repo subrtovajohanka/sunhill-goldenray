@@ -26,6 +26,7 @@
         <a href="#booking" class="hover:text-amber-600">Rezervace</a>
         <a href="#gallery" class="hover:text-amber-600">Galerie</a>
         <a href="#location" class="hover:text-amber-600">Lokalita</a>
+        <a href="#explore" class="hover:text-amber-600">Tipy na výlety</a>
         <a href="#terms" class="hover:text-amber-600">Podmínky</a>
         <a href="#contact" class="hover:text-amber-600">Kontakt</a>
       </nav>
@@ -109,15 +110,15 @@
       <p class="mt-2 text-slate-600">Kalendář volných termínů – vždy aktuální. Lze rezervovat přímo níže.</p>
 
       <!-- VARIANTA A: vložený rezervační kalendář (např. Koalendar / SimplyBook / Reservio) -->
-      <!-- Nahraď src vlastní URL widgetu; výška lze upravit -->
       <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
         <iframe title="Rezervační kalendář" src="https://koalendar.com/e/your-widget" style="width:100%; height:760px; border:0;" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
 
-      <!-- VARIANTA B: jen zobrazení dostupnosti z Google Kalendáře (volitelné) -->
+      <!-- VARIANTA B: zobrazení dostupnosti z Google Kalendáře (bez rezervací) -->
+      <!-- Pokud chceš jen ukázat volné termíny ze sdíleného Google Kalendáře: v Google Calendar nastav veřejné sdílení a vlož zde embed URL. -->
       <!--
       <div class="mt-6 rounded-2xl overflow-hidden border shadow-soft">
-        <iframe src="https://calendar.google.com/calendar/embed?src=PUBLIC_KALENDAR&ctz=Europe%2FPrague" style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://calendar.google.com/calendar/embed?src=PUBLIC_KALENDAR&mode=MONTH&showTitle=0&showPrint=0&showTz=0&ctz=Europe%2FPrague" style="border:0" width="100%" height="600" frameborder="0" scrolling="no"></iframe>
       </div>
       -->
 
@@ -177,6 +178,40 @@
     </div>
   </section>
 
+  <!-- === Explore === -->
+  <section id="explore" class="py-14 bg-white">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Tipy na výlety</h2>
+      <p class="mt-2 text-slate-600">Objev okolí Primoštenu – pláže, města a příroda. (Krátké karty s fotkou a odkazem – inspirováno stránkou „Explore“ z Pearl Residence.)</p>
+      <div class="mt-6 grid md:grid-cols-3 gap-4">
+        <article class="border rounded-2xl overflow-hidden shadow-soft">
+          <img src="img/explore-krka.jpg" alt="Národní park Krka" class="w-full aspect-[4/3] object-cover"/>
+          <div class="p-4">
+            <h3 class="font-semibold">Národní park Krka</h3>
+            <p class="text-sm text-slate-600 mt-1">Vodopády, dřevěné chodníky a vyhlídky. ~1 h autem.</p>
+            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+          </div>
+        </article>
+        <article class="border rounded-2xl overflow-hidden shadow-soft">
+          <img src="img/explore-sibenik.jpg" alt="Šibenik" class="w-full aspect-[4/3] object-cover"/>
+          <div class="p-4">
+            <h3 class="font-semibold">Šibenik</h3>
+            <p class="text-sm text-slate-600 mt-1">Historické město, katedrála sv. Jakuba (UNESCO). 30 min.</p>
+            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+          </div>
+        </article>
+        <article class="border rounded-2xl overflow-hidden shadow-soft">
+          <img src="img/explore-trogir.jpg" alt="Trogir" class="w-full aspect-[4/3] object-cover"/>
+          <div class="p-4">
+            <h3 class="font-semibold">Trogir</h3>
+            <p class="text-sm text-slate-600 mt-1">Malebné historické centrum na ostrově. 45 min.</p>
+            <a class="inline-block mt-2 text-amber-700 underline" href="#">Více informací</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- === Location === -->
   <section id="location" class="py-14 bg-slate-50">
     <div class="container container-narrow mx-auto px-4">
@@ -196,10 +231,22 @@
       <ul class="mt-4 space-y-2 text-slate-700 list-disc ml-5">
         <li>Rezervace vzniká po potvrzení a úhradě <strong>rezervačního poplatku 30&nbsp;%</strong> z ceny pobytu.</li>
         <li>Zbytek ceny splatný při příjezdu / před příjezdem (doplnit preferenci).</li>
-        <li>Storno podmínky: použijeme text „od Kláry“ (doplníme přesné znění).</li>
         <li>Pobyty <strong>7+ nocí</strong> – <strong>bez závěrečného úklidu</strong>. Kratší pobyty: host zajistí úklid sám, nebo lze objednat placený úklid (cena na dotaz).</li>
         <li>Check‑in / Check‑out: (doplnit např. 15:00 / 10:00).</li>
       </ul>
+
+      <!-- Odkaz na PDF s kompletními podmínkami -->
+      <div class="mt-6 p-4 border rounded-2xl">
+        <p class="text-sm text-slate-600">Kompletní všeobecné obchodní podmínky ke stažení:</p>
+        <a href="docs/podminky.pdf" class="inline-block mt-2 px-4 py-2 rounded-lg bg-slate-900 text-white">Stáhnout PDF</a>
+        <p class="text-xs text-slate-500 mt-2">Soubor nahraj do repozitáře do složky <code>/docs/podminky.pdf</code>. Pokud chceš náhled na stránce, vlož dole uvedený iframe.</p>
+        <details class="mt-3 text-sm text-slate-600">
+          <summary class="cursor-pointer">Zobrazit PDF vložené přímo na stránce</summary>
+          <div class="mt-3 rounded-xl overflow-hidden border">
+            <iframe src="docs/podminky.pdf" width="100%" height="600" style="border:0" loading="lazy"></iframe>
+          </div>
+        </details>
+      </div>
     </div>
   </section>
 
@@ -229,7 +276,7 @@
   </section>
 
   <!-- === Footer small === -->
-  <footer class="py-6 text-center text-xs text-slate-500">Web běží jako statická stránka (GitLab Pages). Vytvořeno s ♥.</footer>
+  <footer class="py-6 text-center text-xs text-slate-500">Web běží jako statická stránka (GitHub Pages). Vytvořeno s ♥.</footer>
 
   <script>
     // Dynamický rok ve footeru
