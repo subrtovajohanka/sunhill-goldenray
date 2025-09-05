@@ -7,41 +7,46 @@
   <meta name="description" content="Soukromé ubytování v Primoštenu – Sunhill · Golden Ray. Moderní a čistý apartmán kousek od moře. Online dostupnost a nezávazná rezervace."/>
   <!-- Tailwind CSS via CDN pro rychlý start (na produkci můžeš nahradit vlastním CSS) -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* Drobné doplňky mimo Tailwind */
-.glass { background: rgba(15,16,20,0.6); backdrop-filter: blur(8px); }
-    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
-    .container-narrow { max-width: 980px; }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --gold:#d4af37; }              /* elegantní „zlato“ */
+  .gold { color: var(--gold); }          /* text v „zlaté“ */
+  .bg-gold { background: var(--gold); }  /* tlačítka v „zlaté“ */
+  .border-gold { border-color: var(--gold); }
+  .glass { background: rgba(10,12,16,.55); backdrop-filter: blur(8px); } /* ztmavené sklo */
+  .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  h1,h2,h3 { font-family: "Playfair Display", serif; letter-spacing:.3px }
+</style>
 </head>
 <body class="bg-slate-950 text-slate-100">
   <!-- === Top bar / Logo + menu === -->
-  <header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
+<header class="sticky top-0 z-50 bg-slate-950/80 backdrop-blur border-b border-slate-800">
     <div class="container mx-auto px-4 py-3 flex items-center justify-between">
-      <a href="#top" class="font-semibold tracking-wide text-lg">Sunhill · <span class="text-teal-400">Golden&nbsp;Ray</span></a>
+  <a href="#top" class="font-semibold tracking-wide text-lg">Sunhill <span class="gold">Golden&nbsp;Ray</span></a>
       <nav class="hidden md:flex gap-6 text-sm">
-        <a href="#about" class="hover:text-teal-400">O apartmánu</a>
-        <a href="#pricing" class="hover:text-teal-400">Ceník</a>
-        <a href="#availability" class="hover:text-teal-400">Dostupnost</a>
-        <a href="#booking" class="hover:text-teal-400">Rezervace</a>
-        <a href="#gallery" class="hover:text-teal-400">Galerie</a>
-        <a href="#location" class="hover:text-teal-400">Lokalita</a>
-        <a href="#explore" class="hover:text-teal-400">Tipy na výlety</a>
-        <a href="#terms" class="hover:text-teal-400">Podmínky</a>
-        <a href="#contact" class="hover:text-teal-400">Kontakt</a>
+        <a href="#about" class="hover:gold">O apartmánu</a>
+        <a href="#pricing" class="hover:gold">Ceník</a>
+        <a href="#availability" class="hover:gold">Dostupnost</a>
+        <a href="#booking" class="hover:gold">Rezervace</a>
+        <a href="#gallery" class="hover:gold">Galerie</a>
+        <a href="#location" class="hover:gold">Lokalita</a>
+        <a href="#explore" class="hover:gold">Tipy na výlety</a>
+        <a href="#terms" class="hover:gold">Podmínky</a>
+        <a href="#contact" class="hover:gold">Kontakt</a>
       </nav>
     </div>
   </header>
 
   <!-- === Hero === -->
   <section id="top" class="relative h-[68vh] min-h-[420px] w-full flex items-end" style="background:url('hero.jpg') center/cover no-repeat;">
-    <div class="w-full">
-      <div class="container mx-auto px-4 pb-10">
+  <div class="absolute inset-0 bg-black/35"></div>
+  <div class="w-full relative">
         <div class="glass shadow-soft rounded-2xl p-6 md:p-8">
-          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Primošten Resort <span class="text-teal-400">Sunhill</span> · Golden Ray</h1>
+          <img src="logo.png" alt="Resort Sunhill · Golden Ray" class="mx-auto h-20 md:h-24 mb-4">
+          <h1 class="text-3xl md:text-5xl font-semibold leading-tight">Primošten Resort <span class="gold">Sunhill</span> Golden Ray</h1>
           <p class="mt-3 md:mt-4 text-slate-300 max-w-2xl">Moderní, čistý apartmán v Primoštenu. Výhled, klid a pár minut k moři. Online dostupnost a nezávazná poptávka přímo u majitele.</p>
           <div class="mt-6 flex flex-wrap gap-3">
-            <a href="#availability" class="px-5 py-3 bg-teal-600 text-white rounded-xl shadow-soft hover:bg-teal-700">Zkontrolovat dostupnost</a>
+            <a href="#availability" class="px-5 py-3 bg-gold text-slate-900 rounded-xl shadow-soft hover:brightness-90">
             <a href="#booking" class="px-5 py-3 border border-slate-600 text-slate-100 rounded-xl hover:border-slate-400">Nezávazná rezervace</a>
           </div>
         </div>
@@ -66,7 +71,7 @@
   </section>
 
   <!-- === Pricing === -->
-  <section id="pricing" class="py-14 bg-slate-900>
+  <section id="pricing" class="py-14 bg-slate-900">
     <div class="container container-narrow mx-auto px-4">
       <div class="flex items-center gap-3">
         <h2 class="text-2xl md:text-3xl font-semibold">Ceník</h2>
@@ -127,7 +132,7 @@
   </section>
 
   <!-- === Booking form (fallback / nezávazná poptávka) === -->
-  <section id="booking" class="py-14 bg-slate-900>
+  <section id="booking" class="py-14 bg-slate-900">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Nezávazná rezervace</h2>
       <p class="mt-2 text-slate-400">Preferujeme rezervace přes kalendář výše. Pokud ti to nevyhovuje, můžeš poslat nezávazný dotaz formulářem:</p>
@@ -148,15 +153,15 @@
         </label>
         <label class="block">
           <span class="text-sm">Termín do</span>
-          <input name="to" type="date" required class="mt-1 w-full border rounded-xl px-3 py-2" />
+          <input name="to" type="date" required class="mt-1 w-full border border-slate-700 bg-slate-900 text-slate-100 placeholder-slate-500 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"/>
         </label>
         <label class="block md:col-span-2">
           <span class="text-sm">Zpráva</span>
-          <textarea name="message" rows="4" class="mt-1 w-full border rounded-xl px-3 py-2" placeholder="Počet osob, speciální požadavky…"></textarea>
+          <textarea name="message" rows="4" class="mt-1 w-full border border-slate-700 bg-slate-900 text-slate-100 placeholder-slate-500 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"Počet osob, speciální požadavky…"></textarea>
         </label>
         <div class="md:col-span-2 flex items-center justify-between">
           <div class="text-sm text-slate-400">Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.</div>
-          <button class="px-5 py-3 bg-slate-900 text-white rounded-xl">Odeslat dotaz</button>
+          <button class="px-5 py-3 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl">Odeslat dotaz</button>
         </div>
       </form>
     </div>
@@ -189,7 +194,7 @@
           <div class="p-4">
             <h3 class="font-semibold">Národní park Krka</h3>
             <p class="text-sm text-slate-400 mt-1">Vodopády, dřevěné chodníky a vyhlídky. ~1 h autem.</p>
-            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
+            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
           </div>
         </article>
         <article class="border rounded-2xl overflow-hidden shadow-soft">
@@ -197,7 +202,7 @@
           <div class="p-4">
             <h3 class="font-semibold">Šibenik</h3>
             <p class="text-sm text-slate-400 mt-1">Historické město, katedrála sv. Jakuba (UNESCO). 30 min.</p>
-            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
+            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
           </div>
         </article>
         <article class="border rounded-2xl overflow-hidden shadow-soft">
@@ -205,7 +210,7 @@
           <div class="p-4">
             <h3 class="font-semibold">Trogir</h3>
             <p class="text-sm text-slate-400 mt-1">Malebné historické centrum na ostrově. 45 min.</p>
-            <a class="inline-block mt-2 text-teal-400 underline" href="#">Více informací</a>
+            <a class="inline-block mt-2 gold underline" href="#">Více informací</a>
           </div>
         </article>
       </div>
@@ -213,7 +218,7 @@
   </section>
 
   <!-- === Location === -->
-  <section id="location" class="py-14 bg-slate-900>
+  <section id="location" class="py-14 bg-slate-900">
     <div class="container container-narrow mx-auto px-4">
       <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
       <p class="mt-2 text-slate-400">Adresa: <span class="italic">(doplnit přesnou adresu)</span>. Parkování u objektu. Obchod a pláž v docházkové vzdálenosti.</p>
@@ -298,7 +303,7 @@
         priceMid.textContent = '140';
         priceHigh.textContent = '180';
         priceBadge.textContent = 'Finální ceny';
-        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-800';
+        priceBadge.className = 'ml-2 inline-flex items-center px-2 py-1 text-xs rounded-lg bg-slate-700 text-slate-100';
         priceNote.textContent = 'Zobrazeny finální ceny. Pro návrat klikni znovu.';
       } else {
         priceLow.textContent = '80';
