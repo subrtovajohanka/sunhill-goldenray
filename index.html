@@ -22,7 +22,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     <!-- Logo + text -->
     <a href="#top" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
       <img src="logo.png" alt="Sunhill Golden Ray" class="h-8 w-auto hidden sm:block">
-      <span>Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
+      <span>Primošten Resort Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
     </a>
 
     <!-- Desktop menu -->
@@ -290,28 +290,32 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     <p class="mt-2 text-slate-400">Fotografie apartmánu a okolí Primoštenu.</p>
 
     <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
-      <!-- jedna fotka s ikonou lupy -->
-      <div class="relative group cursor-pointer">
-        <img src="img/loznice.jpg" alt="Ložnice apartmánu"
-             class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-xl transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-          </svg>
-        </div>
-      </div>
-
-      <!-- ostatní fotky stejným způsobem -->
-      <div class="relative group cursor-pointer">
-        <img src="img/kuchyne.jpg" alt="Kuchyně apartmánu"
-             class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
-        <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-xl transition">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
-          </svg>
-        </div>
-      </div>
-      
+  <div class="gallery-item relative group cursor-zoom-in">
+    <img src="img/loznice.jpg" alt="Ložnice apartmánu"
+         class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+    <!-- overlay NEchytá klik -->
+    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100
+                flex items-center justify-center rounded-xl transition pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+      </svg>
+    </div>
+  </div>
+      <<div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+  <div class="gallery-item relative group cursor-zoom-in">
+    <img src="img/kuchyne.jpg" alt="Kuchyně apartmánu"
+         class="rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
+    <!-- overlay NEchytá klik -->
+    <div class="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100
+                flex items-center justify-center rounded-xl transition pointer-events-none">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1110.5 3a7.5 7.5 0 016.15 13.65z" />
+      </svg>
+    </div>
+  </div>
+          <!-- odtud neni upraveno -->
  <div class="relative group cursor-pointer">
         <img src="img/koupelna.jpg" alt="Koupelna apartmánu"
              class="gallery-img rounded-xl object-cover aspect-[4/3] shadow-soft" loading="lazy">
@@ -384,39 +388,27 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
 </div>
 
 <script>
-  const galleryImgs = document.querySelectorAll('.gallery-img');
+  const items = document.querySelectorAll('.gallery-item');
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
   const closeBtn = document.getElementById('closeLightbox');
 
-  galleryImgs.forEach(img => {
-    img.addEventListener('click', () => {
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
       lightboxImg.src = img.src;
       lightbox.classList.remove('hidden');
-      document.body.style.overflow = 'hidden'; // zakáže scroll na pozadí
+      document.body.style.overflow = 'hidden';
     });
   });
 
-  closeBtn.addEventListener('click', () => {
+  function closeLB() {
     lightbox.classList.add('hidden');
     document.body.style.overflow = 'auto';
-  });
-
-  // Zavření klikem mimo obrázek
-  lightbox.addEventListener('click', (e) => {
-    if (e.target === lightbox) {
-      lightbox.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-  });
-
-  // Zavření klávesou ESC
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      lightbox.classList.add('hidden');
-      document.body.style.overflow = 'auto';
-    }
-  });
+  }
+  closeBtn.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLB(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLB(); });
 </script>
 
   <!-- === Explore === -->
