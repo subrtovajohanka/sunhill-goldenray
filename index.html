@@ -652,5 +652,15 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     });
   });
 </script>
+  <script>
+  (function(){
+    const here = location.pathname.replace(/\/+$/, '').split('/').pop() || 'index.html';
+    document.querySelectorAll('header nav a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const file = href.split('/').pop();
+      if (file === here) a.classList.add('text-[var(--gold)]');
+    });
+  })();
+</script>
 </body>
 </html>
