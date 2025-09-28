@@ -1,1 +1,188 @@
+<!doctype html>
+<html lang="cs">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Primošten Resort Sunhill Golden Ray</title>
+<meta name="description" content="Soukromé ubytování v Primoštenu – Sunhill · Golden Ray. Moderní apartmán kousek od moře. Online dostupnost a nezávazná rezervace."/>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root { --gold:#d4af37; }
+.glass { background: rgba(12,14,18,0.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.06); }
+.shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+.container-narrow { max-width: 980px; }
+h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
+</style>
+</head>
+<body class="bg-zinc-950 text-zinc-100">
+<!-- === Top bar / Logo + menu === -->
+<header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
+  <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+    <!-- Logo + text -->
+    <a href="#top" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
+      <span>Primošten Resort Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
+    </a>
 
+    <!-- Desktop menu -->
+    <nav class="hidden md:flex gap-6 text-sm">
+  <a href="/sunhill-goldenray/index.html">Domů</a>
+  <a href="/sunhill-goldenray/about.html">O apartmánu</a>
+  <a href="/sunhill-goldenray/pricing.html">Ceník</a>
+  <a href="/sunhill-goldenray/booking.html">Rezervace</a>
+  <a href="/sunhill-goldenray/gallery.html">Galerie</a>
+  <a href="/sunhill-goldenray/location.html">Lokalita</a>
+  <a href="/sunhill-goldenray/explore.html">Tipy na výlety</a>
+  <a href="/sunhill-goldenray/terms.html">Podmínky</a>
+  <a href="/sunhill-goldenray/contact.html">Kontakt</a>
+</nav>
+    </nav>
+
+    <!-- Mobile menu button -->
+    <button id="menuBtn" type="button"
+            class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
+            aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      Menu
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div id="mobileNav"
+       class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
+    <div class="container mx-auto px-4 py-3 flex flex-col">
+      <nav class="hidden md:flex gap-6 text-sm">
+  <a href="/sunhill-goldenray/index.html">Domů</a>
+  <a href="/sunhill-goldenray/about.html">O apartmánu</a>
+  <a href="/sunhill-goldenray/pricing.html">Ceník</a>
+  <a href="/sunhill-goldenray/booking.html">Rezervace</a>
+  <a href="/sunhill-goldenray/gallery.html">Galerie</a>
+  <a href="/sunhill-goldenray/location.html">Lokalita</a>
+  <a href="/sunhill-goldenray/explore.html">Tipy na výlety</a>
+  <a href="/sunhill-goldenray/terms.html">Podmínky</a>
+  <a href="/sunhill-goldenray/contact.html">Kontakt</a>
+</nav>
+    </div>
+  </div>
+</header>
+  <!-- === Hero === -->
+<section id="top"
+  class="relative h-[80vh] min-h-[560px] w-full flex items-end"
+  style="background:url('primosten-hero.png') center 70%/cover no-repeat;">
+
+  <!-- dark overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/35 to-black/10"></div>
+
+  <div class="w-full relative">
+    <div class="container mx-auto px-4 pb-28">
+    <div class="glass shadow-soft rounded-2xl p-6 md:p-8 max-w-3xl md:ml-6">
+        <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
+          <span class="text-[var(--gold)]">Primošten</span> Resort Sunhill Golden Ray
+        </h1>
+        <p class="mt-4 text-zinc-200 max-w-2xl">
+          Moderní apartmán v Primoštenu. Výhled, klid a pár minut k moři.
+          Online dostupnost a nezávazná poptávka přímo u majitele.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="#booking"
+             class="px-5 py-3 bg-[var(--gold)] text-zinc-950 font-semibold rounded-xl shadow-soft hover:brightness-90">
+             Nezávazná rezervace
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ <!-- === Location === -->
+<section id="location" class="py-14 bg-zinc-950">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold">Lokalita</h2>
+    <p class="mt-2 text-slate-400">
+      Adresa: <strong>Augusta Šenoe, 22202 Primošten, Chorvatsko</strong><br>
+      Parkování přímo před apartmánem. Obchod a pláž v docházkové vzdálenosti.
+    </p>
+    <div class="mt-6 rounded-2xl overflow-hidden border border-zinc-800 shadow-soft">
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d856.9464585292823!2d15.931370856837198!3d43.59144303391874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133523fbbc7a0841%3A0xaad531ed440832!2sPrimo%C5%A1ten%20Resort!5e1!3m2!1scs!2scz!4v1757116174142!5m2!1scs!2scz"
+    width="100%" height="420" style="border:0;" 
+    allowfullscreen="" loading="lazy" 
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+  </div>
+</section>
+  <!-- === Contact === -->
+  <section id="contact" class="py-14 bg-zinc-950 text-white">
+    <div class="container container-narrow mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-semibold">Kontakt</h2>
+      <div class="mt-4 grid md:grid-cols-3 gap-6 text-slate-100">
+        <div>
+          <div class="text-sm text-slate-300">E‑mail</div>
+          <a href="mailto:info@sunhill-goldenray.example" class="underline">primosten.sunhill@gmail.com</a>
+        </div>
+        <div>
+  <div class="text-sm text-slate-300">Sítě</div>
+  <div class="flex gap-4">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/goldenraycroatia/" target="_blank" rel="noopener"
+       class="hover:text-[var(--gold)] transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+        <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm0 2A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4h-9Zm4.5 3.5a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Zm5.75-2a1.25 1.25 0 1 1-2.5 0a1.25 1.25 0 0 1 2.5 0Z"/>
+      </svg>
+    </a>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/people/Primo%C5%A1ten-Resort-Sunhill-Golden-Ray/61558460626353/" target="_blank" rel="noopener"
+       class="hover:text-[var(--gold)] transition">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="h-6 w-6">
+        <path d="M13 3h4a1 1 0 0 1 1 1v4h-2.5A1.5 1.5 0 0 0 14 9.5V12h4l-1 4h-3v7h-4v-7H8v-4h2V9.5A4.5 4.5 0 0 1 14.5 5H17V3Z"/>
+      </svg>
+    </a>
+  </div>
+  </div>
+</div>
+</section>
+
+  <!-- === Footer small === -->
+<footer class="py-6 text-center text-xs text-slate-500">© 2025 Primošten Resort Sunhill Golden Ray</footer>
+  <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var btn = document.getElementById('menuBtn');
+    var nav = document.getElementById('mobileNav');
+    if (!btn || !nav) return;
+
+    function closeNav() {
+      if (!nav.classList.contains('hidden')) {
+        nav.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    }
+    function toggleNav() {
+      var isHidden = nav.classList.contains('hidden');
+      nav.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(isHidden));
+    }
+
+    btn.addEventListener('click', toggleNav);
+    Array.prototype.forEach.call(nav.querySelectorAll('a'), function(a){
+      a.addEventListener('click', closeNav);
+    });
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape') closeNav();
+    });
+  });
+</script>
+  <script>
+  (function(){
+    const here = location.pathname.replace(/\/+$/, '').split('/').pop() || 'index.html';
+    document.querySelectorAll('header nav a').forEach(a => {
+      const href = a.getAttribute('href') || '';
+      const file = href.split('/').pop();
+      if (file === here) a.classList.add('text-[var(--gold)]');
+    });
+  })();
+</script>
+</body>
+</html>
