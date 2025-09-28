@@ -1,101 +1,69 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Primošten Resort Sunhill Golden Ray</title>
-<meta name="description" content="Soukromé ubytování v Primoštenu – Sunhill · Golden Ray. Moderní apartmán kousek od moře. Online dostupnost a nezávazná rezervace."/>
-<script src="https://cdn.tailwindcss.com"></script>
-<style>
-:root { --gold:#d4af37; }
-.glass { background: rgba(12,14,18,0.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.06); }
-.shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.3); }
-.container-narrow { max-width: 980px; }
-h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galerie | Primošten Resort Sunhill Golden Ray</title>
+  <base href="https://subrtovajohanka.github.io/sunhill-goldenray/">
+  <meta name="description" content="Podrobnosti o apartmánu Sunhill Golden Ray v Primoštenu."/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold:#d4af37; }
+    .glass { background: rgba(12,14,18,0.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.06); }
+    .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.3); }
+    .container-narrow { max-width: 980px; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
+  </style>
 </head>
 <body class="bg-zinc-950 text-zinc-100">
 <!-- === Top bar / Logo + menu === -->
 <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
   <div class="container mx-auto px-4 py-3 flex items-center justify-between">
     <!-- Logo + text -->
-    <a href="#top" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
+    <a href="index.html" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
       <span>Primošten Resort Sunhill <span class="text-[var(--gold)]">Golden&nbsp;Ray</span></span>
     </a>
 
     <!-- Desktop menu -->
     <nav class="hidden md:flex gap-6 text-sm">
-  <a href="/sunhill-goldenray/index.html">Domů</a>
-  <a href="/sunhill-goldenray/about.html">O apartmánu</a>
-  <a href="/sunhill-goldenray/pricing.html">Ceník</a>
-  <a href="/sunhill-goldenray/booking.html">Rezervace</a>
-  <a href="/sunhill-goldenray/gallery.html">Galerie</a>
-  <a href="/sunhill-goldenray/location.html">Lokalita</a>
-  <a href="/sunhill-goldenray/explore.html">Tipy na výlety</a>
-  <a href="/sunhill-goldenray/terms.html">Podmínky</a>
-  <a href="/sunhill-goldenray/contact.html">Kontakt</a>
-</nav>
+      <a href="index.html">Domů</a>
+      <a href="about.html">O apartmánu</a>
+      <a href="pricing.html">Ceník</a>
+      <a href="booking.html">Rezervace</a>
+      <a href="gallery.html">Galerie</a>
+      <a href="location.html">Lokalita</a>
+      <a href="explore.html">Tipy na výlety</a>
+      <a href="terms.html">Podmínky</a>
+      <a href="contact.html">Kontakt</a>
     </nav>
 
     <!-- Mobile menu button -->
     <button id="menuBtn" type="button"
-            class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
-            aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
+      class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
+      aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16" />
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
       Menu
     </button>
   </div>
 
   <!-- Mobile drawer -->
-  <div id="mobileNav"
-       class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
+  <div id="mobileNav" class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
     <div class="container mx-auto px-4 py-3 flex flex-col">
-      <nav class="hidden md:flex gap-6 text-sm">
-  <a href="/sunhill-goldenray/index.html">Domů</a>
-  <a href="/sunhill-goldenray/about.html">O apartmánu</a>
-  <a href="/sunhill-goldenray/pricing.html">Ceník</a>
-  <a href="/sunhill-goldenray/booking.html">Rezervace</a>
-  <a href="/sunhill-goldenray/gallery.html">Galerie</a>
-  <a href="/sunhill-goldenray/location.html">Lokalita</a>
-  <a href="/sunhill-goldenray/explore.html">Tipy na výlety</a>
-  <a href="/sunhill-goldenray/terms.html">Podmínky</a>
-  <a href="/sunhill-goldenray/contact.html">Kontakt</a>
-</nav>
+      <a href="index.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Domů</a>
+      <a href="about.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">O apartmánu</a>
+      <a href="pricing.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Ceník</a>
+      <a href="booking.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Rezervace</a>
+      <a href="gallery.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Galerie</a>
+      <a href="location.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Lokalita</a>
+      <a href="explore.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Tipy na výlety</a>
+      <a href="terms.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Podmínky</a>
+      <a href="contact.html"  class="py-2 hover:text-[var(--gold)]">Kontakt</a>
     </div>
   </div>
 </header>
-  <!-- === Hero === -->
-<section id="top"
-  class="relative h-[80vh] min-h-[560px] w-full flex items-end"
-  style="background:url('primosten-hero.png') center 70%/cover no-repeat;">
-
-  <!-- dark overlay -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/55 via-black/35 to-black/10"></div>
-
-  <div class="w-full relative">
-    <div class="container mx-auto px-4 pb-28">
-    <div class="glass shadow-soft rounded-2xl p-6 md:p-8 max-w-3xl md:ml-6">
-        <h1 class="text-4xl md:text-6xl font-semibold leading-tight">
-          <span class="text-[var(--gold)]">Primošten</span> Resort Sunhill Golden Ray
-        </h1>
-        <p class="mt-4 text-zinc-200 max-w-2xl">
-          Moderní apartmán v Primoštenu. Výhled, klid a pár minut k moři.
-          Online dostupnost a nezávazná poptávka přímo u majitele.
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3">
-          <a href="#booking"
-             class="px-5 py-3 bg-[var(--gold)] text-zinc-950 font-semibold rounded-xl shadow-soft hover:brightness-90">
-             Nezávazná rezervace
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
   <!-- === Gallery === -->
 <section id="gallery" class="py-14">
   <div class="container container-narrow mx-auto px-4">
