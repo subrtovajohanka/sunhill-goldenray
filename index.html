@@ -188,5 +188,66 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; letter-spacing: .3px; }
     });
   })();
 </script>
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  const section = document.getElementById('top');
+  const slides = Array.from(document.querySelectorAll('.hero-slide'));
+  const prevBtn = document.getElementById('prevSlide');
+  const nextBtn = document.getElementById('nextSlide');
+
+  if (!section || slides.length === 0) return; // nic k posouvání
+
+  // zajisti, že přesně JEDEN slide je viditelný
+  let current = slides.findIndex(s => s.classList.contains('opacity-100'));
+  if (current < 0) current = 0;
+  slides.forEach((s, i) => {
+    s.classList.remove('opacity-100', 'opacity-0');
+    s.classList.add(i === current ? 'opacity-100' : 'opacity-0');
+  });
+
+  const DURATION = 4000;
+  let timer = null;
+
+  function show(idx) {
+    slides[current].classList.remove('opacity-100');
+    slides[current].classList.add('opacity-0');
+    current = (idx + slides.length) % slides.length;
+    slides[current].classList.remove('opacity-0');
+    slides[current].classList.add('opacity-100');
+  }
+  function next() { show(current + 1); }
+  function prev() { show(current - 1); }
+
+  function start() { stop(); timer = setInterval(next, DURATION); }
+  function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+
+  // auto-run
+  start();
+
+  // šipky (s ochranou, kdyby neexistovaly)
+  if (nextBtn) nextBtn.addEventListener('click', () => { stop(); next(); start(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { stop(); prev(); start(); });
+
+  // pauza při hoveru (desktop)
+  section.addEventListener('mouseenter', stop);
+  section.addEventListener('mouseleave', start);
+
+  // klávesy
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { stop(); next(); start(); }
+    if (e.key === 'ArrowLeft')  { stop(); prev(); start(); }
+  });
+
+  // swipe na mobilu
+  let touchX = null;
+  section.addEventListener('touchstart', (e) => { touchX = e.changedTouches[0].clientX; }, {passive:true});
+  section.addEventListener('touchend', (e) => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 40) { stop(); (dx < 0 ? next() : prev()); start(); }
+    touchX = null;
+  }, {passive:true});
+});
+</script>
 </body>
 </html>
