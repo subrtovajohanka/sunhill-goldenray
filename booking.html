@@ -154,6 +154,11 @@
 <footer class="py-6 text-center text-xs text-slate-500">© 2025 Primošten Resort Sunhill Golden Ray</footer>
 
 <!-- === Skripty === -->
+<!-- vyšší z-index pro kalendář, kdyby ho překrýval header -->
+<style>
+  .flatpickr-calendar { z-index: 9999 !important; }
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw9HX5CarPrBhIOkArTu1O0kANNUTij0qpPpJXh6EBWPJCa2fRmF_eqzjif9zPmeuoh/exec';
@@ -173,8 +178,8 @@ function nightlyRate(d){
     {from:md(10,16),to:new Date(y,11,31),rate:80},
   ];
   const winter={from:new Date(y+1,0,1),to:new Date(y+1,3,30),rate:80};
-  for(const b of bands)if(d>=b.from&&d<=b.to)return b.rate;
-  if(d>=winter.from&&d<=winter.to)return winter.rate;
+  for(const b of bands) if(d>=b.from && d<=b.to) return b.rate;
+  if(d>=winter.from && d<=winter.to) return winter.rate;
   return 100;
 }
 function* eachNight(f,t){const c=new Date(f);while(c<t){yield new Date(c);c.setDate(c.getDate()+1);}}
@@ -186,51 +191,102 @@ function calcPrice(f,t,kids){
 /* --- obsazenost --- */
 let booked=[];
 async function loadBookings(){
-  const r=await fetch(SCRIPT_URL);
-  const j=await r.json();
-  booked=(j.bookings||[]).map(b=>({from:b.from,to:b.to}));
+  try{
+    const r=await fetch(SCRIPT_URL,{cache:'no-store'});
+    if(!r.ok) throw new Error('fetch fail');
+    const j=await r.json();
+    // Flatpickr disable očekává ISO stringy
+    booked=(j.bookings||[]).map(b=>({from:String(b.from),to:String(b.to)}));
+  }catch(e){
+    booked=[]; // fallback: žádné blokace, ale kalendář běží
+    console.warn('Obsazenost se nepodařilo načíst, pokračuji bez ní.', e);
+  }
 }
 const toISO=d=>d.toISOString().slice(0,10);
 
-(async function init(){
-  await loadBookings();
-  const fp=flatpickr('#daterange',{mode:'range',dateFormat:'Y-m-d',minDate:'today',disable:booked,onChange:update});
-  document.getElementById('children').addEventListener('input',update);
-  async function update(){
-    const val=document.getElementById('daterange').value.replace(', ',' to ');
-    const [f,t]=val.split(' to ');if(!f||!t)return show(0,0,0,0);
-    const from=new Date(f),to=new Date(t),kids=+document.getElementById('children').value||0;
-    const p=calcPrice(from,to,kids);show(p.nights,p.base,p.kids,p.cleaning,p.total);
-  }
-  function show(n,b,k,c,tot){nights.textContent=n;basePrice.textContent=b+' €';kidsPrice.textContent=k+' €';cleaning.textContent=c+' €';total.textContent=tot+' €';}
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadBookings(); // i když spadne, booked=[] a jedeme dál
 
-  const form=document.getElementById('resForm'),msg=document.getElementById('msg');
-  form.addEventListener('submit',async e=>{
-    e.preventDefault();msg.textContent='Odesílám…';
-    const val=daterange.value.replace(', ',' to '),[f,t]=val.split(' to ');
-    if(!f||!t)return msg.textContent='Vyberte prosím termín.';
-    const from=new Date(f),to=new Date(t),kids=+children.value||0,price=calcPrice(from,to,kids).total;
-    const data={name:name.value.trim(),email:email.value.trim(),phone:phone.value.trim(),note:note.value.trim(),from:toISO(from),to:toISO(to),adults:2,children:kids,price_eur:price};
+  const fp = flatpickr('#daterange', {
+    mode: 'range',
+    dateFormat: 'Y-m-d',
+    minDate: 'today',
+    disable: booked,        // když booked=[], nic se neblokuje
+    clickOpens: true,
+    allowInput: false
+  });
+
+  const $children = document.getElementById('children');
+  const $nights   = document.getElementById('nights');
+  const $base     = document.getElementById('basePrice');
+  const $kids     = document.getElementById('kidsPrice');
+  const $cleaning = document.getElementById('cleaning');
+  const $total    = document.getElementById('total');
+
+  function show(p){ 
+    $nights.textContent = p.nights || 0;
+    $base.textContent   = (p.base||0) + ' €';
+    $kids.textContent   = (p.kids||0) + ' €';
+    $cleaning.textContent = (p.cleaning||0) + ' €';
+    $total.textContent  = (p.total||0) + ' €';
+  }
+
+  function update(){
+    const val = document.getElementById('daterange').value.replace(', ',' to ');
+    const [f,t] = val.split(' to ');
+    if(!f || !t){ show({}); return; }
+    const from = new Date(f), to = new Date(t);
+    const kids = +$children.value || 0;
+    show(calcPrice(from,to,kids));
+  }
+
+  $children.addEventListener('input', update);
+  document.getElementById('daterange').addEventListener('change', update);
+
+  // Form
+  const form = document.getElementById('resForm');
+  const msg  = document.getElementById('msg');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    msg.className='mt-3 text-sm';
+    msg.textContent='Odesílám…';
+
+    const val=document.getElementById('daterange').value.replace(', ',' to ');
+    const [f,t]=val.split(' to ');
+    if(!f||!t){ msg.textContent='Vyberte prosím termín.'; return; }
+
+    const from=new Date(f), to=new Date(t), kids=+$children.value||0;
+    const price=calcPrice(from,to,kids).total;
+
+    const data={
+      name: document.getElementById('name').value.trim(),
+      email:document.getElementById('email').value.trim(),
+      phone:document.getElementById('phone').value.trim(),
+      note: document.getElementById('note').value.trim(),
+      from: toISO(from), to: toISO(to),
+      adults: 2, children: kids, price_eur: price
+    };
+
     try{
       const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
       const j=await r.json();
-      if(j.ok){msg.className='mt-3 text-sm text-emerald-400';msg.textContent=j.message||'Děkujeme, rezervace odeslána.';form.reset();await loadBookings();fp.set('disable',booked);}
-      else{msg.className='mt-3 text-sm text-red-400';msg.textContent=j.error||'Chyba odeslání.';}
-    }catch(err){msg.className='mt-3 text-sm text-red-400';msg.textContent='Chyba připojení, zkuste to znovu.';}
+      if(j.ok){
+        msg.className='mt-3 text-sm text-emerald-400';
+        msg.textContent=j.message||'Děkujeme, rezervace odeslána.';
+        form.reset(); show({});
+        // zkusit obnovit blokace; i kdyby selhalo, nevadí
+        await loadBookings(); fp.set('disable', booked);
+      }else{
+        msg.className='mt-3 text-sm text-red-400';
+        msg.textContent=j.error||'Chyba odeslání.';
+      }
+    }catch(err){
+      msg.className='mt-3 text-sm text-red-400';
+      msg.textContent='Chyba připojení, zkuste to znovu.';
+    }
   });
-})();
-</script>
-
-<script>
-  // menu + zvýraznění
-  document.addEventListener('DOMContentLoaded', function () {
-    const btn=document.getElementById('menuBtn'),nav=document.getElementById('mobileNav');
-    btn.addEventListener('click',()=>nav.classList.toggle('hidden'));
-    document.querySelectorAll('header nav a').forEach(a=>{
-      const f=a.getAttribute('href').split('/').pop();
-      if(location.pathname.endsWith(f))a.classList.add('text-[var(--gold)]');
-    });
-  });
+});
 </script>
 </body>
 </html>
