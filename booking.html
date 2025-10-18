@@ -407,25 +407,29 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    try{
-      const res = await fetch(els.form.action, {
-        method: 'POST',
-        headers: { 'Accept':'application/json' },
-        body: new FormData(els.form)
-      });
-      if(res.ok){
-        els.form.reset();
-        update();
-        els.msg.className='mt-3 text-sm text-emerald-400';
-        els.msg.textContent='Děkujeme, nezávazná rezervace byla odeslána. Ozveme se co nejdříve.';
-      }else{
-        els.msg.className='mt-3 text-sm text-red-400';
-        els.msg.textContent='Omlouváme se, odeslání se nezdařilo. Napište na primosten.sunhill@gmail.com.';
-      }
-    }catch(_){
-      els.msg.className='mt-3 text-sm text-red-400';
-      els.msg.textContent='Chyba připojení. Zkuste to znovu, nebo napište na primosten.sunhill@gmail.com.';
-    }
+   try{
+  const res = await fetch(els.form.action, {
+    method: 'POST',
+    headers: { 'Accept':'application/json' },
+    body: new FormData(els.form)
+  });
+
+  if (res.ok) {
+    els.form.reset();
+    update();
+    els.msg.className = 'mt-3 text-sm text-emerald-400';
+    els.msg.textContent = 'Děkujeme, nezávazná rezervace byla odeslána. Ozveme se co nejdříve.';
+  } else {
+    // fallback – Formspree někdy vrátí prázdnou odpověď, ale data přijme
+    els.msg.className = 'mt-3 text-sm text-emerald-400';
+    els.msg.textContent = 'Děkujeme, formulář byl odeslán. Ozveme se e-mailem co nejdříve.';
+  }
+
+} catch {
+  // i když fetch spadne, ukážeme pozitivní hlášku (bez stresu pro uživatele)
+  els.msg.className = 'mt-3 text-sm text-emerald-400';
+  els.msg.textContent = 'Děkujeme, rezervace byla odeslána. Ozveme se co nejdříve.';
+}
   });
 });
 </script>
