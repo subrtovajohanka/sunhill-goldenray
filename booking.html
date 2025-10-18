@@ -161,7 +161,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwLESS5TPG0W5crGSJXof0AibH-vNnAJk9OJ7_QCzdsnSr1RI8oQ7dvasdIHREeH8LWwg/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzedKEgm7vTVTUOBtKaAWWusIlL1EQ6jMRjpcMZGvGwjOoBrd6DQxeNmHB6mw6xK8n8Eg/exec';
 
 /* --- ceník & výpočet --- */
 function nightlyRate(d){
@@ -247,45 +247,48 @@ document.addEventListener('DOMContentLoaded', async () => {
   const form = document.getElementById('resForm');
   const msg  = document.getElementById('msg');
 
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    msg.className='mt-3 text-sm';
-    msg.textContent='Odesílám…';
+  form.addEventListener('submit', async e => {
+  e.preventDefault(); msg.textContent = 'Odesílám…';
 
-    const val=document.getElementById('daterange').value.replace(', ',' to ');
-    const [f,t]=val.split(' to ');
-    if(!f||!t){ msg.textContent='Vyberte prosím termín.'; return; }
+  const val = daterange.value.replace(', ', ' to ');
+  const [f,t] = val.split(' to ');
+  if (!f || !t) { msg.textContent = 'Vyberte prosím termín.'; return; }
 
-    const from=new Date(f), to=new Date(t), kids=+$children.value||0;
-    const price=calcPrice(from,to,kids).total;
+  const from = new Date(f), to = new Date(t);
+  const kids = +children.value || 0;
+  const price = calcPrice(from, to, kids).total;
 
-    const data={
-      name: document.getElementById('name').value.trim(),
-      email:document.getElementById('email').value.trim(),
-      phone:document.getElementById('phone').value.trim(),
-      note: document.getElementById('note').value.trim(),
-      from: toISO(from), to: toISO(to),
-      adults: 2, children: kids, price_eur: price
-    };
-
-    try{
-      const r=await fetch(SCRIPT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-      const j=await r.json();
-      if(j.ok){
-        msg.className='mt-3 text-sm text-emerald-400';
-        msg.textContent=j.message||'Děkujeme, rezervace odeslána.';
-        form.reset(); show({});
-        // zkusit obnovit blokace; i kdyby selhalo, nevadí
-        await loadBookings(); fp.set('disable', booked);
-      }else{
-        msg.className='mt-3 text-sm text-red-400';
-        msg.textContent=j.error||'Chyba odeslání.';
-      }
-    }catch(err){
-      msg.className='mt-3 text-sm text-red-400';
-      msg.textContent='Chyba připojení, zkuste to znovu.';
-    }
+  const data = new URLSearchParams({
+    from: toISO(from),
+    to: toISO(to),
+    name: name.value.trim(),
+    email: email.value.trim(),
+    phone: phone.value.trim(),
+    note: note.value.trim(),
+    adults: '2',
+    children: String(kids),
+    price_eur: String(price)
   });
+
+  try {
+    const r = await fetch(SCRIPT_URL, { method:'POST', body:data });
+    const j = await r.json();
+    if (j.ok) {
+      msg.className = 'mt-3 text-sm text-emerald-400';
+      msg.textContent = j.message || 'Děkujeme, rezervace odeslána.';
+      form.reset();
+      await loadBookings();
+      fp.set('disable', booked); // obnovíme blokované termíny
+    } else {
+      msg.className = 'mt-3 text-sm text-red-400';
+      msg.textContent = j.error || 'Chyba odeslání.';
+    }
+  } catch (_) {
+    msg.className = 'mt-3 text-sm text-red-400';
+    msg.textContent = 'Chyba připojení, zkuste to znovu.';
+  }
+});
+
 });
 </script>
 </body>
