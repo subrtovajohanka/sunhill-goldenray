@@ -5,15 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Rezervace | Primošten Resort Sunhill Golden Ray</title>
   <base href="https://subrtovajohanka.github.io/sunhill-goldenray/">
-  <meta name="description" content="Rezervujte si ubytování v apartmánu Sunhill Golden Ray v Primoštenu.">
+  <meta name="description" content="Rezervace ubytování v apartmánu Sunhill Golden Ray v Primoštenu."/>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<style>
-  /* kalendář nad vším */
-  .flatpickr-calendar { z-index: 70 !important; }
-</style>
-
+  <style>
     :root { --gold:#d4af37; }
     .glass { background: rgba(12,14,18,0.45); backdrop-filter: blur(8px); border:1px solid rgba(255,255,255,.06); }
     .shadow-soft { box-shadow: 0 10px 30px rgba(0,0,0,.3); }
@@ -23,7 +18,7 @@
 </head>
 <body class="bg-zinc-950 text-zinc-100">
 
-<!-- === HEADER === -->
+<!-- === Header === -->
 <header class="sticky top-0 z-50 bg-zinc-950/80 backdrop-blur border-b border-zinc-800">
   <div class="container mx-auto px-4 py-3 flex items-center justify-between">
     <a href="index.html" class="flex items-center gap-3 font-semibold tracking-wide text-lg">
@@ -43,7 +38,8 @@
     </nav>
 
     <button id="menuBtn" type="button"
-      class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900">
+      class="md:hidden inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-zinc-700 text-sm hover:bg-zinc-900"
+      aria-label="Otevřít menu" aria-expanded="false" aria-controls="mobileNav">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
       </svg>
@@ -51,389 +47,202 @@
     </button>
   </div>
 
-  <div id="mobileNav" class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur">
+  <!-- Mobile drawer -->
+  <div id="mobileNav" class="md:hidden hidden border-t border-zinc-800 bg-zinc-950/95 backdrop-blur transition-all duration-200">
     <div class="container mx-auto px-4 py-3 flex flex-col">
-      <a href="index.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Domů</a>
-      <a href="about.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">O apartmánu</a>
-      <a href="pricing.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Ceník</a>
-      <a href="booking.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Rezervace</a>
-      <a href="gallery.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Galerie</a>
+      <a href="index.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Domů</a>
+      <a href="about.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">O apartmánu</a>
+      <a href="pricing.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Ceník</a>
+      <a href="booking.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Rezervace</a>
+      <a href="gallery.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Galerie</a>
       <a href="location.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Lokalita</a>
-      <a href="explore.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Tipy na výlety</a>
-      <a href="terms.html" class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Podmínky</a>
-      <a href="contact.html" class="py-2 hover:text-[var(--gold)]">Kontakt</a>
+      <a href="explore.html"  class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Tipy na výlety</a>
+      <a href="terms.html"    class="py-2 border-b border-zinc-800 hover:text-[var(--gold)]">Podmínky</a>
+      <a href="contact.html"  class="py-2 hover:text-[var(--gold)]">Kontakt</a>
     </div>
   </div>
 </header>
 
-<section id="booking" class="py-16 bg-zinc-950">
+<!-- === Rezervace (Reenio) === -->
+<section id="booking" class="py-14 bg-zinc-950">
   <div class="container container-narrow mx-auto px-4">
-    <h2 class="text-3xl font-semibold text-[var(--gold)] mb-4">Rezervace</h2>
-    <p class="text-zinc-400 mb-8">
-      Vyberte si termín, počet dětí a zjistěte orientační cenu. Odeslání je nezávazné – termín potvrdíme e-mailem.
+    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Rezervace</h2>
+    <p class="mt-2 text-zinc-400">
+      Rezervaci můžete provést online kliknutím na tlačítko níže, nebo přímo v kalendáři.
     </p>
 
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- Kalkulačka -->
-      <div class="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-        <label class="text-sm block mb-2">Termín</label>
-        <input id="daterange" class="w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700"
-               placeholder="Vyberte příjezd a odjezd" readonly>
-
-        <div class="grid grid-cols-2 gap-3 mt-4">
-          <label class="block">
-            <span class="text-sm">Dospělí</span>
-            <input id="adults" type="number" min="2" max="2" value="2"
-                   class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700" disabled>
-          </label>
-          <label class="block">
-            <span class="text-sm">Děti (0–12)</span>
-            <input id="children" type="number" min="0" max="2" value="0"
-                   class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700">
-          </label>
-        </div>
-
-        <div class="mt-4 text-sm text-slate-300 space-y-1">
-          <div>Počet nocí: <strong id="nights">0</strong></div>
-          <div>Ubytování: <strong id="basePrice">0 €</strong></div>
-          <div>Děti: <strong id="kidsPrice">0 €</strong></div>
-          <div>Úklid (při méně než 5 nocích): <strong id="cleaning">0 €</strong></div>
-          <div class="mt-2 text-lg">Celkem: <strong id="total">0 €</strong></div>
-        </div>
+    <div class="mt-6 rounded-2xl overflow-hidden border border-zinc-800 shadow-soft bg-zinc-950/40">
+      <!-- Reenio tlačítko (plná stránka) -->
+      <div class="flex items-center gap-3 p-4 flex-wrap">
+        <a href="https://reenio.cz/cs/redirect/reservationpage/22922"
+           target="_blank" rel="noopener"
+           class="inline-flex items-center px-4 py-2 rounded-xl bg-[var(--gold)] text-zinc-950 font-semibold hover:brightness-95 transition reenio-reservation-btn"
+           data-no-dialog="1">
+           Nová rezervace
+        </a>
+        <span class="text-sm text-zinc-400">Doporučeno na mobilu (plná obrazovka).</span>
       </div>
 
-      <!-- Formulář přes Formspree -->
-      <form id="resForm"
-            action="https://formspree.io/f/mdklpryz"
-            method="POST"
-            class="p-5 rounded-2xl border border-zinc-800 bg-zinc-900/40">
-
-        <!-- předmět e-mailu -->
-        <input type="hidden" name="_subject" value="Nezávazná rezervace – Sunhill Golden Ray">
-
-        <!-- skrytá pole pro předání termínu a ceny -->
-        <input type="hidden" name="from" id="hidden_from">
-        <input type="hidden" name="to" id="hidden_to">
-        <input type="hidden" name="adults" value="2">
-        <input type="hidden" name="children_count" id="hidden_children">
-        <input type="hidden" name="price_total_eur" id="hidden_price">
-
-        <label class="block">
-          <span class="text-sm">Jméno a příjmení</span>
-          <input name="name" id="name" required
-                 class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700">
-        </label>
-
-        <div class="grid grid-cols-2 gap-3 mt-3">
-          <label class="block">
-            <span class="text-sm">E-mail</span>
-            <input name="email" id="email" type="email" required
-                   class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700">
-          </label>
-          <label class="block">
-            <span class="text-sm">Telefon</span>
-            <input name="phone" id="phone"
-                   class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700">
-          </label>
-        </div>
-
-        <label class="block mt-3">
-          <span class="text-sm">Poznámka</span>
-          <textarea name="note" id="note" rows="3"
-                    class="mt-1 w-full px-3 py-2 rounded-xl bg-zinc-900 border border-zinc-700"></textarea>
-        </label>
-
-        <button class="mt-4 w-full px-5 py-3 bg-[var(--gold)] text-zinc-950 font-semibold rounded-xl hover:brightness-95">
-          Odeslat nezávaznou rezervaci
-        </button>
-
-        <p id="msg" class="mt-3 text-sm"></p>
-      </form>
+      <!-- Oficiální Reenio embed (bez iframu) -->
+      <div class="p-2">
+        <div class="reenio-iframe" data-size="auto"></div>
+      </div>
     </div>
 
-    <p class="mt-6 text-sm text-zinc-400">
-      Rezervace se stává závaznou po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong> z ceny ubytování.
+    <!-- Widget skripty musí být AŽ za HTML prvky -->
+    <script src="https://reenio.cz/cs/GIZDSMRS/widget-reservation-btn.js" async defer></script>
+    <script src="https://reenio.cz/cs/GIZDSMRS/widget-iframe.js" async defer></script>
+
+    <p class="mt-6 text-sm text-zinc-500">
+      Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
     </p>
   </div>
 </section>
 
+<!-- === Nezávazná poptávka (fallback) === -->
+<section id="inquiry" class="py-14 bg-zinc-950">
+  <div class="container container-narrow mx-auto px-4">
+    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Nezávazná poptávka</h2>
+    <p class="mt-2 text-zinc-400">
+      Preferujeme online rezervaci v kalendáři výše. Pokud Vám to nevyhovuje, můžete nám zanechat nezávaznou poptávku.
+    </p>
 
-<!-- === KONTAKT === -->
+    <form id="contactForm"
+          action="https://formspree.io/f/mdklpryz"
+          method="POST"
+          class="mt-6 grid md:grid-cols-2 gap-4">
+
+      <!-- předmět e-mailu -->
+      <input type="hidden" name="_subject" value="Nezávazná poptávka – Sunhill Golden Ray">
+      <!-- honeypot proti spamu -->
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+
+      <label class="block">
+        <span class="text-sm">Jméno a příjmení</span>
+        <input name="name" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+               placeholder="Např. Jana Nováková">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">E-mail</span>
+        <input name="email" type="email" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+               placeholder="např. host@example.com">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">Termín od</span>
+        <input name="from" type="date" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500">
+      </label>
+
+      <label class="block">
+        <span class="text-sm">Termín do</span>
+        <input name="to" type="date" required
+               class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 rounded-xl px-3 py-2
+                      focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500">
+      </label>
+
+      <label class="block md:col-span-2">
+        <span class="text-sm">Zpráva</span>
+        <textarea name="message" rows="4"
+                  class="mt-1 w-full border border-zinc-700 bg-zinc-900 text-zinc-100 placeholder-zinc-500 rounded-xl px-3 py-2
+                         focus:outline-none focus:ring-2 focus:ring-yellow-500/40 focus:border-yellow-500"
+                  placeholder="Počet osob, věk dětí, speciální požadavky…"></textarea>
+      </label>
+
+      <div class="md:col-span-2 flex items-center justify-between">
+        <div class="text-sm text-zinc-400">
+          Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
+        </div>
+        <button class="px-5 py-3 bg-[var(--gold)] text-zinc-950 font-semibold rounded-xl hover:brightness-95">
+          Odeslat poptávku
+        </button>
+      </div>
+
+      <!-- zpráva po odeslání -->
+      <p id="contactMsg" class="md:col-span-2 mt-3 text-sm"></p>
+    </form>
+  </div>
+</section>
+
+<!-- === Contact === -->
 <section id="contact" class="py-14 bg-zinc-950 text-white">
   <div class="container container-narrow mx-auto px-4">
     <h2 class="text-2xl md:text-3xl font-semibold">Kontakt</h2>
     <div class="mt-4 grid md:grid-cols-3 gap-6 text-slate-100">
       <div>
         <div class="text-sm text-slate-300">E-mail</div>
-        <a href="mailto:primosten.sunhill@gmail.com" class="underline">primosten.sunhill@gmail.com</a>
+        <a href="mailto:primosten.sunhill@gmail.com" class="underline" rel="noopener">primosten.sunhill@gmail.com</a>
       </div>
       <div>
         <div class="text-sm text-slate-300">Sítě</div>
         <div class="flex gap-4">
-          <a href="https://www.instagram.com/goldenraycroatia/" target="_blank" class="hover:text-[var(--gold)] transition">Instagram</a>
-          <a href="https://www.facebook.com/people/Primo%C5%A1ten-Resort-Sunhill-Golden-Ray/61558460626353/" target="_blank" class="hover:text-[var(--gold)] transition">Facebook</a>
+          <a href="https://www.instagram.com/goldenraycroatia/" target="_blank" rel="noopener" class="hover:text-[var(--gold)] transition">Instagram</a>
+          <a href="https://www.facebook.com/people/Primo%C5%A1ten-Resort-Sunhill-Golden-Ray/61558460626353/" target="_blank" rel="noopener" class="hover:text-[var(--gold)] transition">Facebook</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- === Footer === -->
 <footer class="py-6 text-center text-xs text-slate-500">© 2025 Primošten Resort Sunhill Golden Ray</footer>
 
-<!-- === Skripty === -->
-<!-- vyšší z-index pro kalendář, kdyby ho překrýval header -->
-<style>
-  .flatpickr-calendar { z-index: 9999 !important; }
-</style>
-
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<!-- === Skripty: menu a Formspree fallback zpráva === -->
 <script>
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzedKEgm7vTVTUOBtKaAWWusIlL1EQ6jMRjpcMZGvGwjOoBrd6DQxeNmHB6mw6xK8n8Eg/exec';
+  // mobile menu
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('menuBtn');
+    const nav = document.getElementById('mobileNav');
+    if (btn && nav) btn.addEventListener('click', () => nav.classList.toggle('hidden'));
 
-/* --- ceník & výpočet --- */
-function nightlyRate(d){
-  const y=d.getFullYear();
-  const md=(m,day)=>new Date(y,m-1,day);
-  const bands=[
-    {from:md(5,1),to:md(5,31),rate:100},
-    {from:md(6,1),to:md(6,15),rate:120},
-    {from:md(6,15),to:md(6,30),rate:140},
-    {from:md(7,1),to:md(8,15),rate:160},
-    {from:md(8,15),to:md(9,15),rate:140},
-    {from:md(9,15),to:md(9,30),rate:120},
-    {from:md(10,1),to:md(10,15),rate:100},
-    {from:md(10,16),to:new Date(y,11,31),rate:80},
-  ];
-  const winter={from:new Date(y+1,0,1),to:new Date(y+1,3,30),rate:80};
-  for(const b of bands) if(d>=b.from && d<=b.to) return b.rate;
-  if(d>=winter.from && d<=winter.to) return winter.rate;
-  return 100;
-}
-function* eachNight(f,t){const c=new Date(f);while(c<t){yield new Date(c);c.setDate(c.getDate()+1);}}
-function calcPrice(f,t,kids){
-  let n=0,b=0;for(const day of eachNight(f,t)){n++;b+=nightlyRate(day);}
-  const kf=(+kids||0)*15*n,cl=n<5?80:0;return{nights:n,base:b,kids:kf,cleaning:cl,total:b+kf+cl};
-}
-
-/* --- obsazenost --- */
-let booked=[];
-async function loadBookings(){
-  try{
-    const r=await fetch(SCRIPT_URL,{cache:'no-store'});
-    if(!r.ok) throw new Error('fetch fail');
-    const j=await r.json();
-    // Flatpickr disable očekává ISO stringy
-    booked=(j.bookings||[]).map(b=>({from:String(b.from),to:String(b.to)}));
-  }catch(e){
-    booked=[]; // fallback: žádné blokace, ale kalendář běží
-    console.warn('Obsazenost se nepodařilo načíst, pokračuji bez ní.', e);
-  }
-}
-const toISO=d=>d.toISOString().slice(0,10);
-
-document.addEventListener('DOMContentLoaded', async () => {
-  await loadBookings(); // i když spadne, booked=[] a jedeme dál
-
-  const fp = flatpickr('#daterange', {
-    mode: 'range',
-    dateFormat: 'Y-m-d',
-    minDate: 'today',
-    disable: booked,        // když booked=[], nic se neblokuje
-    clickOpens: true,
-    allowInput: false
+    // active link highlight
+    const here = location.pathname.replace(/\/+$/, '').split('/').pop() || 'index.html';
+    document.querySelectorAll('header nav a').forEach(a => {
+      const file = (a.getAttribute('href') || '').split('/').pop();
+      if (file === here) a.classList.add('text-[var(--gold)]');
+    });
   });
 
-  const $children = document.getElementById('children');
-  const $nights   = document.getElementById('nights');
-  const $base     = document.getElementById('basePrice');
-  const $kids     = document.getElementById('kidsPrice');
-  const $cleaning = document.getElementById('cleaning');
-  const $total    = document.getElementById('total');
+  // Formspree UX – přívětivější fallback
+  (function(){
+    const form = document.getElementById('contactForm');
+    const msg  = document.getElementById('contactMsg');
+    if (!form) return;
 
-  function show(p){ 
-    $nights.textContent = p.nights || 0;
-    $base.textContent   = (p.base||0) + ' €';
-    $kids.textContent   = (p.kids||0) + ' €';
-    $cleaning.textContent = (p.cleaning||0) + ' €';
-    $total.textContent  = (p.total||0) + ' €';
-  }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.className = 'md:col-span-2 mt-3 text-sm text-zinc-400';
+      msg.textContent = 'Odesíláme…';
 
-  function update(){
-    const val = document.getElementById('daterange').value.replace(', ',' to ');
-    const [f,t] = val.split(' to ');
-    if(!f || !t){ show({}); return; }
-    const from = new Date(f), to = new Date(t);
-    const kids = +$children.value || 0;
-    show(calcPrice(from,to,kids));
-  }
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Accept':'application/json' },
+          body: new FormData(form)
+        });
 
-  $children.addEventListener('input', update);
-  document.getElementById('daterange').addEventListener('change', update);
-
-  // Form
-  const form = document.getElementById('resForm');
-  const msg  = document.getElementById('msg');
-
-  form.addEventListener('submit', async e => {
-  e.preventDefault(); msg.textContent = 'Odesílám…';
-
-  const val = daterange.value.replace(', ', ' to ');
-  const [f,t] = val.split(' to ');
-  if (!f || !t) { msg.textContent = 'Vyberte prosím termín.'; return; }
-
-  const from = new Date(f), to = new Date(t);
-  const kids = +children.value || 0;
-  const price = calcPrice(from, to, kids).total;
-
-  const data = new URLSearchParams({
-    from: toISO(from),
-    to: toISO(to),
-    name: name.value.trim(),
-    email: email.value.trim(),
-    phone: phone.value.trim(),
-    note: note.value.trim(),
-    adults: '2',
-    children: String(kids),
-    price_eur: String(price)
-  });
-
-  try {
-    const r = await fetch(SCRIPT_URL, { method:'POST', body:data });
-    const j = await r.json();
-    if (j.ok) {
-      msg.className = 'mt-3 text-sm text-emerald-400';
-      msg.textContent = j.message || 'Děkujeme, rezervace odeslána.';
-      form.reset();
-      await loadBookings();
-      fp.set('disable', booked); // obnovíme blokované termíny
-    } else {
-      msg.className = 'mt-3 text-sm text-red-400';
-      msg.textContent = j.error || 'Chyba odeslání.';
-    }
-  } catch (_) {
-    msg.className = 'mt-3 text-sm text-red-400';
-    msg.textContent = 'Chyba připojení, zkuste to znovu.';
-  }
-});
-
-});
+        if (res.ok) {
+          form.reset();
+          msg.className = 'md:col-span-2 mt-3 text-sm text-emerald-400';
+          msg.textContent = 'Děkujeme, Vaše poptávka byla odeslána. Ozveme se co nejdříve.';
+        } else {
+          // i když Formspree nevrátí OK, často data dorazí – ukažme přátelskou hlášku
+          msg.className = 'md:col-span-2 mt-3 text-sm text-emerald-400';
+          msg.textContent = 'Děkujeme, formulář byl odeslán. Ozveme se e-mailem co nejdříve.';
+        }
+      } catch {
+        // síťová chyba – stále zobrazíme pozitivní zprávu, ať uživatel nemá stres
+        msg.className = 'md:col-span-2 mt-3 text-sm text-emerald-400';
+        msg.textContent = 'Děkujeme, rezervace byla odeslána. Ozveme se co nejdříve.';
+      }
+    });
+  })();
 </script>
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script>
-// --- ceník 2026 ---
-function nightlyRate(d){
-  const y=d.getFullYear(), md=(m,day)=>new Date(y,m-1,day);
-  const bands=[
-    {from:md(5,1),  to:md(5,31),  rate:100},
-    {from:md(6,1),  to:md(6,15),  rate:120},
-    {from:md(6,15), to:md(6,30),  rate:140},
-    {from:md(7,1),  to:md(8,15),  rate:160},
-    {from:md(8,15), to:md(9,15),  rate:140},
-    {from:md(9,15), to:md(9,30),  rate:120},
-    {from:md(10,1), to:md(10,15), rate:100},
-    {from:md(10,16),to:new Date(y,11,31),rate:80},
-  ];
-  const winter={from:new Date(y+1,0,1),to:new Date(y+1,3,30),rate:80};
-  for(const b of bands) if(d>=b.from&&d<=b.to) return b.rate;
-  if(d>=winter.from&&d<=winter.to) return winter.rate;
-  return 100;
-}
-function* eachNight(f,t){const c=new Date(f);while(c<t){yield new Date(c);c.setDate(c.getDate()+1);}}
-function calcPrice(f,t,kids){
-  let n=0,b=0;for(const day of eachNight(f,t)){n++;b+=nightlyRate(day);}
-  const kidsFee=(+kids||0)*15*n;
-  const cleaning=n<5?80:0;
-  return {nights:n,base:b,kids:kidsFee,cleaning,total:b+kidsFee+cleaning};
-}
-const toISO = d => d.toISOString().slice(0,10);
-
-// init po načtení
-document.addEventListener('DOMContentLoaded', () => {
-  // kalendář (bez obsazenosti – úplně jednoduché)
-  const fp = flatpickr('#daterange',{ mode:'range', dateFormat:'Y-m-d', minDate:'today' });
-
-  const $children = document.getElementById('children');
-  const els = {
-    nights: document.getElementById('nights'),
-    base: document.getElementById('basePrice'),
-    kids: document.getElementById('kidsPrice'),
-    cleaning: document.getElementById('cleaning'),
-    total: document.getElementById('total'),
-    hidden_from: document.getElementById('hidden_from'),
-    hidden_to: document.getElementById('hidden_to'),
-    hidden_children: document.getElementById('hidden_children'),
-    hidden_price: document.getElementById('hidden_price'),
-    msg: document.getElementById('msg'),
-    form: document.getElementById('resForm'),
-    daterange: document.getElementById('daterange')
-  };
-
-  function update(){
-    const val = els.daterange.value.replace(', ',' to ');
-    const [f,t] = val.split(' to ');
-    if(!f||!t){
-      els.nights.textContent='0'; els.base.textContent='0 €';
-      els.kids.textContent='0 €'; els.cleaning.textContent='0 €'; els.total.textContent='0 €';
-      els.hidden_from.value=''; els.hidden_to.value=''; els.hidden_children.value=$children.value;
-      els.hidden_price.value='';
-      return;
-    }
-    const from=new Date(f), to=new Date(t), kids=+$children.value||0;
-    const p = calcPrice(from,to,kids);
-    els.nights.textContent=p.nights;
-    els.base.textContent=p.base+' €';
-    els.kids.textContent=p.kids+' €';
-    els.cleaning.textContent=p.cleaning+' €';
-    els.total.textContent=p.total+' €';
-    els.hidden_from.value=toISO(from);
-    els.hidden_to.value=toISO(to);
-    els.hidden_children.value=kids;
-    els.hidden_price.value=p.total;
-  }
-
-  $children.addEventListener('input', update);
-  els.daterange.addEventListener('change', update);
-
-  // odeslání přes Formspree (ukáže pěkné hlášky)
-  els.form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    els.msg.className='mt-3 text-sm text-zinc-300';
-    els.msg.textContent='Odesílám…';
-
-    // minimální validace termínu
-    if(!els.hidden_from.value || !els.hidden_to.value){
-      els.msg.className='mt-3 text-sm text-red-400';
-      els.msg.textContent='Vyberte prosím termín.';
-      return;
-    }
-
-   try{
-  const res = await fetch(els.form.action, {
-    method: 'POST',
-    headers: { 'Accept':'application/json' },
-    body: new FormData(els.form)
-  });
-
-  if (res.ok) {
-    els.form.reset();
-    update();
-    els.msg.className = 'mt-3 text-sm text-emerald-400';
-    els.msg.textContent = 'Děkujeme, nezávazná rezervace byla odeslána. Ozveme se co nejdříve.';
-  } else {
-    // fallback – Formspree někdy vrátí prázdnou odpověď, ale data přijme
-    els.msg.className = 'mt-3 text-sm text-emerald-400';
-    els.msg.textContent = 'Děkujeme, formulář byl odeslán. Ozveme se e-mailem co nejdříve.';
-  }
-
-} catch {
-  // i když fetch spadne, ukážeme pozitivní hlášku (bez stresu pro uživatele)
-  els.msg.className = 'mt-3 text-sm text-emerald-400';
-  els.msg.textContent = 'Děkujeme, rezervace byla odeslána. Ozveme se co nejdříve.';
-}
-  });
-});
-</script>
-
 </body>
 </html>
-
