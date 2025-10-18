@@ -109,6 +109,102 @@
       <h3 class="font-semibold text-lg mb-2">Krátké pobyty</h3>
       <p>V případě pobytu kratším než <strong>5&nbsp;dní</strong> účtujeme jednorázový poplatek za závěrečný úklid <strong>80&nbsp;€</strong>.</p>
     </div>
+<!-- Orientační kalkulačka ceny -->
+<div class="mt-8 p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
+  <h3 class="font-semibold text-lg mb-3">Spočítat orientační cenu</h3>
+  <div class="grid md:grid-cols-4 gap-3 items-end">
+    <label class="block">
+      <span class="text-sm text-slate-300">Příjezd</span>
+      <input id="calcFrom" type="date" class="mt-1 w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700">
+    </label>
+    <label class="block">
+      <span class="text-sm text-slate-300">Odjezd</span>
+      <input id="calcTo" type="date" class="mt-1 w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700">
+    </label>
+    <label class="block">
+      <span class="text-sm text-slate-300">Děti na přistýlce</span>
+      <select id="calcKids" class="mt-1 w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700">
+        <option value="0">0</option>
+        <option value="1">1 dítě</option>
+        <option value="2">2 děti</option>
+      </select>
+    </label>
+    <button id="calcBtn" class="px-4 py-2 rounded-xl bg-[var(--gold)] text-zinc-950 font-semibold hover:brightness-95">
+      Spočítat
+    </button>
+  </div>
+  <p id="calcOut" class="mt-4 text-slate-200"></p>
+</div>
+
+<script>
+(function(){
+  const SEASONS = [
+    {from:'01-05', to:'05-31', price:100},
+    {from:'06-01', to:'06-15', price:120},
+    {from:'06-15', to:'06-30', price:140},
+    {from:'07-01', to:'08-15', price:160},
+    {from:'08-15', to:'09-15', price:140},
+    {from:'09-15', to:'09-30', price:120},
+    {from:'10-01', to:'10-15', price:100},
+    // zimní pásmo přes rok
+    {from:'10-16', to:'04-30', price:80, wraps:true},
+  ];
+  const KID_PER_NIGHT = 15;
+
+  function priceForDate(d){
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    const md = `${m}-${day}`;
+
+    for (const s of SEASONS) {
+      if (!s.wraps) {
+        if (md >= s.from && md <= s.to) return s.price;
+      } else {
+        // pásmo přes rok: (md >= from) nebo (md <= to)
+        if (md >= s.from || md <= s.to) return s.price;
+      }
+    }
+    return null;
+  }
+
+  function* nightsBetween(a,b){
+    const d = new Date(a);
+    while (d < b) { yield new Date(d); d.setDate(d.getDate()+1); }
+  }
+
+  function calc(){
+    const fromEl = document.getElementById('calcFrom');
+    const toEl   = document.getElementById('calcTo');
+    const kids   = parseInt(document.getElementById('calcKids').value,10) || 0;
+    const out    = document.getElementById('calcOut');
+
+    const from = new Date(fromEl.value);
+    const to   = new Date(toEl.value);
+    if (isNaN(from) || isNaN(to) || to <= from) {
+      out.textContent = 'Zadejte platné datum příjezdu a odjezdu.';
+      return;
+    }
+    const nights = Math.round((to - from) / 86400000);
+    let base = 0;
+    for (const d of nightsBetween(from, to)) {
+      const p = priceForDate(d);
+      if (p == null) { out.textContent = 'Pro zadané datum nemáme cenu.'; return; }
+      base += p;
+    }
+    const kidsFee = kids * KID_PER_NIGHT * nights;
+    const cleaning = nights < 5 ? 80 : 0;
+    const total = base + kidsFee + cleaning;
+
+    out.innerHTML =
+      `Počet nocí: <strong>${nights}</strong><br>` +
+      `Základní cena: <strong>${base} €</strong><br>` +
+      `Příplatek za děti: <strong>${kidsFee} €</strong>${kids ? ' (15 € / dítě / noc)': ''}<br>` +
+      (cleaning ? `Závěrečný úklid (pobyt < 5 nocí): <strong>${cleaning} €</strong><br>` : '') +
+      `<span class="text-[var(--gold)]">Orientační celkem: <strong>${total} €</strong></span>`;
+  }
+  document.getElementById('calcBtn')?.addEventListener('click', calc);
+})();
+</script>
 
     <!-- Záloha a storno -->
     <div class="mt-4 p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 text-slate-300 text-sm">
