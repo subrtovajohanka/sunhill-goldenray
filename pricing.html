@@ -241,9 +241,9 @@
     }
   })();
 </script>
-  <script>
-const CSV_SEASONS_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=16249854&single=true&output=csv";
-const CSV_SETTINGS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=0&single=true&output=csv";
+ <script>
+const CSV_SEASONS_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=0&single=true&output=csv";
+const CSV_SETTINGS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=16249854&single=true&output=csv";
 
 function parseCsv(text){
   return text.trim().split(/\r?\n/).map(r => r.split(",").map(c => c.trim()));
@@ -267,7 +267,10 @@ let KID_PER_NIGHT = 15, CLEANING_FEE = 80, CLEANING_MIN_NIGHTS = 5;
 
 async function loadPricing(){
   try{
-    const [sResp, setResp] = await Promise.all([ fetch(CSV_SEASONS_URL), fetch(CSV_SETTINGS_URL) ]);
+   const [sResp, setResp] = await Promise.all([
+  fetch(CSV_SEASONS_URL + "&_=" + Date.now(), { cache: "no-store" }),
+  fetch(CSV_SETTINGS_URL + "&_=" + Date.now(), { cache: "no-store" })
+]);
     const seasonsCsv  = parseCsv(await sResp.text());   // from,to,price
     const settingsCsv = parseCsv(await setResp.text()); // kids_per_night,cleaning_fee,cleaning_min_nights
 
