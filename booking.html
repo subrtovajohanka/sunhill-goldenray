@@ -244,5 +244,26 @@
     });
   })();
 </script>
+  <script>
+  (function () {
+    var url  = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
+    var data = JSON.stringify({ path: location.pathname || "/" });
+
+    if (navigator.sendBeacon) {
+      var blob = new Blob([data], { type: "application/json" });
+      navigator.sendBeacon(url, blob);
+    } else {
+      // fallback – bez CORS řešení, jen odeslat
+      fetch(url, {
+        method: "POST",
+        mode: "no-cors",
+        keepalive: true,
+        headers: { "Content-Type": "application/json" },
+        body: data
+      });
+    }
+  })();
+</script>
+
 </body>
 </html>
