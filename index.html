@@ -229,13 +229,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }, {passive:true});
 });
 </script>
-  <script>
+<script>
   (function(){
     var url = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
+    var data = JSON.stringify({ path: location.pathname || "/" });
     if (navigator.sendBeacon) {
-      navigator.sendBeacon(url, new Blob([], { type: "application/json" }));
+      var blob = new Blob([data], { type: "application/json" });
+      navigator.sendBeacon(url, blob);
     } else {
-      fetch(url, { method:"POST", keepalive:true });
+      fetch(url, { method:"POST", body:data, headers:{ "Content-Type":"application/json" }, keepalive:true });
     }
   })();
 </script>
