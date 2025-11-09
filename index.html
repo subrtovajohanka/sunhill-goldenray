@@ -229,5 +229,15 @@ document.addEventListener('DOMContentLoaded', function () {
   }, {passive:true});
 });
 </script>
+  <script>
+  (function(){
+    var url = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(url, new Blob([], { type: "application/json" }));
+    } else {
+      fetch(url, { method:"POST", keepalive:true });
+    }
+  })();
+</script>
 </body>
 </html>
