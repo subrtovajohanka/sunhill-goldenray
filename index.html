@@ -231,16 +231,24 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script>
-  (function(){
-    var url = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
-    var data = JSON.stringify({ path: location.pathname || "/" });
-    if (navigator.sendBeacon) {
-      var blob = new Blob([data], { type: "application/json" });
-      navigator.sendBeacon(url, blob);
-    } else {
-      fetch(url, { method:"POST", body:data, headers:{ "Content-Type":"application/json" }, keepalive:true });
-    }
-  })();
+(function () {
+  const url = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
+
+  // pošleme celou "cestu" včetně # a ?
+  const path = location.pathname + (location.search || "") + (location.hash || "");
+  const payload = JSON.stringify({ path });
+
+  if (navigator.sendBeacon) {
+    navigator.sendBeacon(url, new Blob([payload], { type: "application/json" }));
+  } else {
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true
+    });
+  }
+})();
 </script>
 </body>
 </html>
