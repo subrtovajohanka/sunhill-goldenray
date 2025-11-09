@@ -231,24 +231,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 <script>
-(function () {
-  const url = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/beacon";
+  (function () {
+    var u = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/b?p=" +
+            encodeURIComponent(location.pathname || "/");
 
-  // pošleme celou "cestu" včetně # a ?
-  const path = location.pathname + (location.search || "") + (location.hash || "");
-  const payload = JSON.stringify({ path });
+    // 1) nejjednodušší – nenápadný <img> 1×1
+    var img = new Image(1,1);
+    img.referrerPolicy = "no-referrer";
+    img.src = u;
 
-  if (navigator.sendBeacon) {
-    navigator.sendBeacon(url, new Blob([payload], { type: "application/json" }));
-  } else {
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: payload,
-      keepalive: true
-    });
-  }
-})();
+    // 2) volitelně fallback i přes sendBeacon (když je k dispozici)
+    if (navigator.sendBeacon) {
+      try { navigator.sendBeacon(u); } catch(e) {}
+    }
+  })();
 </script>
 </body>
 </html>
