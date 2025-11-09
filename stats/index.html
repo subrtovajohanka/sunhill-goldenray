@@ -21,7 +21,6 @@
   <div class="wrap">
     <div class="card">
       <h1>📊 Statistiky webu Goldenray</h1>
-      <p class="subtitle">Jednoduchý přehled pro mamku</p>
       <div class="grid">
         <div class="tile">
           <div class="label">Návštěvy dnes</div>
@@ -33,6 +32,17 @@
         </div>
       </div>
       <div id="updated">Načítám data…</div>
+      <div class="grid" style="margin-top:16px">
+  <div class="tile">
+    <div class="label">Top země (dnes)</div>
+    <ol id="countries" style="text-align:left;margin:8px 0 0 18px"></ol>
+  </div>
+  <div class="tile">
+    <div class="label">Top stránky (dnes)</div>
+    <ol id="pages" style="text-align:left;margin:8px 0 0 18px"></ol>
+  </div>
+</div>
+
     </div>
   </div>
 
@@ -40,19 +50,36 @@
     // ↓↓↓ po nasazení Workeru jen vyměníš URL za svou ve tvaru https://NAZEV.workers.dev/metrics
     const API = "https://rapid-limit-6e53.primosten-sunhill.workers.dev/metrics";
 
-    async function refresh() {
-      try {
-        const r = await fetch(API, {cache:"no-store"});
-        const d = await r.json();
-        document.getElementById("today").textContent  = d.today  ?? 0;
-        document.getElementById("active").textContent = d.active ?? 0;
-        document.getElementById("updated").textContent = "Aktualizováno: " + new Date().toLocaleTimeString("cs-CZ");
-      } catch (e) {
-        document.getElementById("updated").textContent = "Nepodařilo se načíst data.";
-      }
-    }
-    refresh();
-    setInterval(refresh, 10000);
+  async function refresh() {
+  try {
+    const r = await fetch(API, { cache: "no-store" });
+    const d = await r.json();
+
+    document.getElementById("today").textContent  = d.today ?? 0;
+    document.getElementById("active").textContent = d.active ?? 0;
+
+    // TOP země
+    const cEl = document.getElementById("countries");
+    cEl.innerHTML = (d.countries || [])
+      .map(x => `<li>${x.code} — ${x.count}</li>`)
+      .join("") || "<li>–</li>";
+
+    // TOP stránky
+    const pEl = document.getElementById("pages");
+    pEl.innerHTML = (d.pages || [])
+      .map(x => `<li>${x.path} — ${x.count}</li>`)
+      .join("") || "<li>–</li>";
+
+    document.getElementById("updated").textContent =
+      "Aktualizováno: " + new Date().toLocaleTimeString("cs-CZ");
+  } catch {
+    document.getElementById("updated").textContent = "Nepodařilo se načíst data.";
+  }
+}
+
+refresh();
+setInterval(refresh, 10000);
+
   </script>
 </body>
 </html>
