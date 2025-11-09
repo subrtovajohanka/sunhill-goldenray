@@ -82,16 +82,7 @@
             <th class="p-4 font-semibold">Cena / noc</th>
           </tr>
         </thead>
-        <tbody class="[&_tr:not(:last-child)]:border-b [&_tr:not(:last-child)]:border-zinc-800">
-          <tr><td class="p-4">1.&nbsp;5. – 31.&nbsp;5.</td><td class="p-4 font-semibold">100&nbsp;€</td></tr>
-          <tr><td class="p-4">1.&nbsp;6. – 15.&nbsp;6.</td><td class="p-4 font-semibold">120&nbsp;€</td></tr>
-          <tr><td class="p-4">15.&nbsp;6. – 30.&nbsp;6.</td><td class="p-4 font-semibold">140&nbsp;€</td></tr>
-          <tr><td class="p-4">1.&nbsp;7. – 15.&nbsp;8.</td><td class="p-4 font-semibold">160&nbsp;€</td></tr>
-          <tr><td class="p-4">15.&nbsp;8. – 15.&nbsp;9.</td><td class="p-4 font-semibold">140&nbsp;€</td></tr>
-          <tr><td class="p-4">15.&nbsp;9. – 30.&nbsp;9.</td><td class="p-4 font-semibold">120&nbsp;€</td></tr>
-          <tr><td class="p-4">1.&nbsp;10. – 15.&nbsp;10.</td><td class="p-4 font-semibold">100&nbsp;€</td></tr>
-          <tr><td class="p-4">16.&nbsp;10. – 30.&nbsp;4.</td><td class="p-4 font-semibold">80&nbsp;€</td></tr>
-        </tbody>
+        <tbody id="priceBody" class="[&_tr:not(:last-child)]:border-b [&_tr:not(:last-child)]:border-zinc-800"></tbody>
       </table>
     </div>
 
@@ -100,7 +91,7 @@
       <h3 class="font-semibold text-lg mb-2">Děti</h3>
       <ul class="list-disc ml-5 space-y-1 text-slate-300 text-sm">
         <li>Děti do <strong>3&nbsp;let</strong> bez nároku na lůžko <strong>ZDARMA</strong>.</li>
-        <li>Děti od <strong>3&nbsp;let</strong> na přistýlce za příplatek <strong>10&nbsp;€ / dítě / noc</strong>.</li>
+        <li>Děti od <strong>3&nbsp;let</strong> na přistýlce za příplatek <strong>15&nbsp;€ / dítě / noc</strong>.</li>
       </ul>
     </div>
 
@@ -135,77 +126,6 @@
   </div>
   <p id="calcOut" class="mt-4 text-slate-200"></p>
 </div>
-
-<script>
-(function(){
-  const SEASONS = [
-    {from:'01-05', to:'05-31', price:100},
-    {from:'06-01', to:'06-15', price:120},
-    {from:'06-15', to:'06-30', price:140},
-    {from:'07-01', to:'08-15', price:160},
-    {from:'08-15', to:'09-15', price:140},
-    {from:'09-15', to:'09-30', price:120},
-    {from:'10-01', to:'10-15', price:100},
-    // zimní pásmo přes rok
-    {from:'10-16', to:'04-30', price:80, wraps:true},
-  ];
-  const KID_PER_NIGHT = 15;
-
-  function priceForDate(d){
-    const m = String(d.getMonth()+1).padStart(2,'0');
-    const day = String(d.getDate()).padStart(2,'0');
-    const md = `${m}-${day}`;
-
-    for (const s of SEASONS) {
-      if (!s.wraps) {
-        if (md >= s.from && md <= s.to) return s.price;
-      } else {
-        // pásmo přes rok: (md >= from) nebo (md <= to)
-        if (md >= s.from || md <= s.to) return s.price;
-      }
-    }
-    return null;
-  }
-
-  function* nightsBetween(a,b){
-    const d = new Date(a);
-    while (d < b) { yield new Date(d); d.setDate(d.getDate()+1); }
-  }
-
-  function calc(){
-    const fromEl = document.getElementById('calcFrom');
-    const toEl   = document.getElementById('calcTo');
-    const kids   = parseInt(document.getElementById('calcKids').value,10) || 0;
-    const out    = document.getElementById('calcOut');
-
-    const from = new Date(fromEl.value);
-    const to   = new Date(toEl.value);
-    if (isNaN(from) || isNaN(to) || to <= from) {
-      out.textContent = 'Zadejte platné datum příjezdu a odjezdu.';
-      return;
-    }
-    const nights = Math.round((to - from) / 86400000);
-    let base = 0;
-    for (const d of nightsBetween(from, to)) {
-      const p = priceForDate(d);
-      if (p == null) { out.textContent = 'Pro zadané datum nemáme cenu.'; return; }
-      base += p;
-    }
-    const kidsFee = kids * KID_PER_NIGHT * nights;
-    const cleaning = nights < 5 ? 80 : 0;
-    const total = base + kidsFee + cleaning;
-
-    out.innerHTML =
-      `Počet nocí: <strong>${nights}</strong><br>` +
-      `Základní cena: <strong>${base} €</strong><br>` +
-      `Příplatek za děti: <strong>${kidsFee} €</strong>${kids ? ' (15 € / dítě / noc)': ''}<br>` +
-      (cleaning ? `Závěrečný úklid (pobyt < 5 nocí): <strong>${cleaning} €</strong><br>` : '') +
-      `<span class="text-[var(--gold)]">Orientační celkem: <strong>${total} €</strong></span>`;
-  }
-  document.getElementById('calcBtn')?.addEventListener('click', calc);
-})();
-</script>
-
     <!-- Záloha a storno -->
     <div class="mt-4 p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 text-slate-300 text-sm">
       <h3 class="font-semibold text-lg mb-2">Rezervace a storno podmínky</h3>
@@ -320,6 +240,141 @@
       });
     }
   })();
+</script>
+  <script>
+const CSV_SEASONS_URL  = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=16249854&single=true&output=csv";
+const CSV_SETTINGS_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRsSHc6OrUJ9b3RAWgURIqDZcXfAw0IV2tqqVqlOZTQsevBxQQck9vj8FvbyrXkYDbAYPisvCpKnM7U/pub?gid=0&single=true&output=csv";
+
+function parseCsv(text){
+  return text.trim().split(/\r?\n/).map(r => r.split(",").map(c => c.trim()));
+}
+function dmToMd(dmStr){
+  const m = dmStr.replace(/\s+/g,"").match(/^(\d{1,2})\.(\d{1,2})\.$/);
+  if(!m) return null;
+  const d = m[1].padStart(2,"0"), mo = m[2].padStart(2,"0");
+  return `${mo}-${d}`; // MM-DD
+}
+function mdWraps(fromMD, toMD){ return fromMD > toMD; }
+function el(tag, attrs={}, children=[]){
+  const e=document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) k==="class" ? e.className=v : e.setAttribute(k,v);
+  (Array.isArray(children)?children:[children]).forEach(ch => typeof ch==="string" ? e.innerHTML+=ch : ch && e.appendChild(ch));
+  return e;
+}
+
+let SEASONS = [];
+let KID_PER_NIGHT = 15, CLEANING_FEE = 80, CLEANING_MIN_NIGHTS = 5;
+
+async function loadPricing(){
+  try{
+    const [sResp, setResp] = await Promise.all([ fetch(CSV_SEASONS_URL), fetch(CSV_SETTINGS_URL) ]);
+    const seasonsCsv  = parseCsv(await sResp.text());   // from,to,price
+    const settingsCsv = parseCsv(await setResp.text()); // kids_per_night,cleaning_fee,cleaning_min_nights
+
+    // SETTINGS: vezmi první řádek s číselnými hodnotami
+    const valsRow = settingsCsv.find(r => r.some(x => /^\d/.test(x)));
+    if(valsRow){
+      KID_PER_NIGHT = Number(valsRow[0] || 15);
+      CLEANING_FEE = Number(valsRow[1] || 80);
+      CLEANING_MIN_NIGHTS = Number(valsRow[2] || 5);
+    }
+
+    // SEASONS
+    SEASONS = seasonsCsv
+      .filter(r => r.length >= 3 && /^\d/.test(r[0]))
+      .map(([from,to,price])=>{
+        const f=dmToMd(from), t=dmToMd(to);
+        const p=Number(String(price).replace(",", "."));
+        return { from:f, to:t, price:p, wraps: mdWraps(f,t) };
+      });
+
+    // vykresli tabulku
+    const body=document.getElementById("priceBody"); body.innerHTML="";
+    seasonsCsv.forEach(r=>{
+      if(r.length<3 || !/^\d/.test(r[0])) return;
+      const [from,to,price]=r;
+      body.appendChild(
+        el("tr",{class:"border-zinc-800"},[
+          el("td",{class:"p-4"},`${from} – ${to}`),
+          el("td",{class:"p-4 font-semibold"},`${price} €`)
+        ])
+      );
+    });
+
+    // dej data kalkulačce
+    if(typeof updateCalcFromSettings === "function"){
+      updateCalcFromSettings({ KID_PER_NIGHT, CLEANING_FEE, CLEANING_MIN_NIGHTS, SEASONS });
+    }
+    window.SEASONS = SEASONS; // kdyby bylo potřeba i jinde
+  }catch(e){
+    console.error(e);
+    document.getElementById("priceBody").innerHTML =
+      '<tr><td class="p-4" colspan="2">Ceník se nepodařilo načíst. Zkuste to prosím znovu.</td></tr>';
+  }
+}
+document.addEventListener("DOMContentLoaded", loadPricing);
+</script>
+  <script>
+(function(){
+  let SEASONS = window.SEASONS || [];
+  let KID_PER_NIGHT = 15, CLEANING_FEE = 80, CLEANING_MIN_NIGHTS = 5;
+
+  // Loader zavolá po načtení CSV
+  window.updateCalcFromSettings = function({ KID_PER_NIGHT: k, CLEANING_FEE: cf, CLEANING_MIN_NIGHTS: cmn, SEASONS: s }){
+    if (Array.isArray(s) && s.length) SEASONS = s;
+    if (typeof k === "number") KID_PER_NIGHT = k;
+    if (typeof cf === "number") CLEANING_FEE = cf;
+    if (typeof cmn === "number") CLEANING_MIN_NIGHTS = cmn;
+  };
+
+  function priceForDate(d){
+    const m = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    const md = `${m}-${day}`;
+    for (const s of SEASONS) {
+      const wraps = s.wraps ?? (s.from > s.to);
+      if (!wraps) { if (md >= s.from && md <= s.to) return s.price; }
+      else { if (md >= s.from || md <= s.to) return s.price; }
+    }
+    return null;
+  }
+
+  function* nightsBetween(a,b){
+    const d = new Date(a);
+    while (d < b) { yield new Date(d); d.setDate(d.getDate()+1); }
+  }
+
+  function calc(){
+    const fromEl = document.getElementById('calcFrom');
+    const toEl   = document.getElementById('calcTo');
+    const kids   = parseInt(document.getElementById('calcKids').value,10) || 0;
+    const out    = document.getElementById('calcOut');
+
+    const from = new Date(fromEl.value);
+    const to   = new Date(toEl.value);
+    if (isNaN(from) || isNaN(to) || to <= from) { out.textContent = 'Zadejte platné datum příjezdu a odjezdu.'; return; }
+
+    const nights = Math.round((to - from) / 86400000);
+    let base = 0;
+    for (const d of nightsBetween(from, to)) {
+      const p = priceForDate(d);
+      if (p == null) { out.textContent = 'Pro zadané datum nemáme cenu.'; return; }
+      base += p;
+    }
+    const kidsFee = kids * KID_PER_NIGHT * nights;
+    const cleaning = nights < CLEANING_MIN_NIGHTS ? CLEANING_FEE : 0;
+    const total = base + kidsFee + cleaning;
+
+    out.innerHTML =
+      `Počet nocí: <strong>${nights}</strong><br>` +
+      `Základní cena: <strong>${base} €</strong><br>` +
+      `Příplatek za děti: <strong>${kidsFee} €</strong>${kids ? ` (${KID_PER_NIGHT} € / dítě / noc)` : ''}<br>` +
+      (cleaning ? `Závěrečný úklid (pobyt < ${CLEANING_MIN_NIGHTS} nocí): <strong>${cleaning} €</strong><br>` : '') +
+      `<span class="text-[var(--gold)]">Orientační celkem: <strong>${total} €</strong></span>`;
+  }
+
+  document.getElementById('calcBtn')?.addEventListener('click', calc);
+})();
 </script>
 </body>
 </html>
