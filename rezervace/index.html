@@ -61,40 +61,41 @@
   </div>
   </div>
 </header>
-
-<!-- === Rezervace (Reenio) === -->
-<section id="booking" class="py-14 bg-zinc-950">
+<!-- === Obsazenost (Google Calendar) === -->
+<section id="availability" class="py-14 bg-zinc-950">
   <div class="container container-narrow mx-auto px-4">
-    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Rezervace</h2>
+    <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Obsazenost</h2>
     <p class="mt-2 text-zinc-400">
-      Rezervaci můžete provést online kliknutím na tlačítko níže, nebo přímo v kalendáři.
+      V kalendáři níže uvidíte aktuálně obsazené termíny. Pokud vám termín vyhovuje, pošlete nám nezávaznou poptávku.
     </p>
 
     <div class="mt-6 rounded-2xl overflow-hidden border border-zinc-800 shadow-soft bg-zinc-950/40">
-      <!-- Reenio tlačítko (plná stránka) -->
-      <div class="flex items-center gap-3 p-4 flex-wrap">
-        <a href="https://reenio.cz/cs/redirect/reservationpage/22922"
-           target="_blank" rel="noopener"
-           class="inline-flex items-center px-4 py-2 rounded-xl bg-[var(--gold)] text-zinc-950 font-semibold hover:brightness-95 transition reenio-reservation-btn"
-           data-no-dialog="1">
-           Nová rezervace
-        </a>
-        <span class="text-sm text-zinc-400">Doporučeno na mobilu (plná obrazovka).</span>
-      </div>
-
-      <!-- Oficiální Reenio embed (bez iframu) -->
-      <div class="p-2">
-        <div class="reenio-iframe" data-size="auto"></div>
+      <div class="p-3">
+        <div class="relative w-full" style="padding-top: 75%;">
+          <iframe
+            class="absolute inset-0 w-full h-full rounded-xl"
+            src="https://calendar.google.com/calendar/embed?src=primosten.sunhill%40gmail.com&ctz=Europe%2FPrague&hl=cs&mode=MONTH&showTitle=0&showPrint=0&showTabs=0&showCalendars=0&showTz=0"
+            style="border:0"
+            frameborder="0"
+            scrolling="no"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            aria-label="Kalendář obsazenosti">
+          </iframe>
+        </div>
       </div>
     </div>
 
-    <!-- Widget skripty musí být AŽ za HTML prvky -->
-    <script src="https://reenio.cz/cs/GIZDSMRS/widget-reservation-btn.js" async defer></script>
-    <script src="https://reenio.cz/cs/GIZDSMRS/widget-iframe.js" async defer></script>
-
-    <p class="mt-6 text-sm text-zinc-500">
-      Rezervace je závazná až po potvrzení a úhradě zálohy <strong>30&nbsp;%</strong>.
+    <p class="mt-4 text-sm text-zinc-500">
+      Rezervace je platná až po potvrzení e-mailem a úhradě zálohy <strong>30&nbsp;%</strong>.
     </p>
+
+    <div class="mt-6">
+      <a href="#inquiry"
+         class="inline-flex items-center px-5 py-3 rounded-xl bg-[var(--gold)] text-zinc-950 font-semibold hover:brightness-95">
+        Odeslat nezávaznou poptávku
+      </a>
+    </div>
   </div>
 </section>
 
@@ -102,10 +103,9 @@
 <section id="inquiry" class="py-14 bg-zinc-950">
   <div class="container container-narrow mx-auto px-4">
     <h2 class="text-2xl md:text-3xl font-semibold text-[var(--gold)]">Nezávazná poptávka</h2>
-    <p class="mt-2 text-zinc-400">
-      Preferujeme online rezervaci v kalendáři výše. Pokud Vám to nevyhovuje, můžete nám zanechat nezávaznou poptávku.
-    </p>
-
+  <p class="mt-2 text-zinc-400">
+  Pošlete nám nezávaznou poptávku a termín vám co nejdříve potvrdíme e-mailem.
+</p>
     <form id="contactForm"
           action="https://formspree.io/f/mdklpryz"
           method="POST"
