@@ -71,6 +71,9 @@
       Cena je platná pro <strong>2&nbsp;osoby / apartmán / noc</strong><br>
       Maximální kapacita: <strong>2&nbsp;dospělí + 2&nbsp;děti na přistýlce</strong>
     </p>
+    <p class="mt-3 text-sm text-slate-300">
+  Při pobytech <strong>10&nbsp;dní a více</strong> poskytujeme slevu <strong>10&nbsp;%</strong> z ceny ubytování.
+</p>
 
     <!-- Tabulka období -->
     <div class="mt-6 overflow-hidden rounded-2xl border border-zinc-800 shadow-soft">
@@ -97,8 +100,9 @@
     <!-- Krátké pobyty -->
     <div class="mt-4 p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40 text-slate-300 text-sm">
       <h3 class="font-semibold text-lg mb-2">Krátké pobyty</h3>
-      <p>V případě pobytu kratším než <strong>5&nbsp;dní</strong> účtujeme jednorázový poplatek za závěrečný úklid <strong>80&nbsp;€</strong>.</p>
-    </div>
+      <p>V případě pobytu kratším než <strong>5&nbsp;dní</strong> účtujeme jednorázový poplatek za závěrečný úklid <strong>100&nbsp;€</strong>.</p>
+      </div>
+
 <!-- Orientační kalkulačka ceny -->
 <div class="mt-8 p-4 rounded-2xl border border-zinc-800 bg-zinc-900/40">
   <h3 class="font-semibold text-lg mb-3">Spočítat orientační cenu</h3>
@@ -132,6 +136,7 @@
         <li>Rezervace se stává závaznou po zaplacení zálohy <strong>30&nbsp;%</strong> z celkové ceny ubytování, zaplacené nejpozději do <strong>3&nbsp;dnů</strong> od data vytvoření objednávky.</li>
         <li>V případě zrušení rezervace <strong>do 45&nbsp;dnů</strong> před plánovaným příjezdem – <strong>bez storno poplatku</strong>, záloha vrácena v plné výši.</li>
         <li>Při zrušení rezervace <strong>44&nbsp;dní a méně</strong> před příjezdem – storno poplatek <strong>30&nbsp;%</strong> z celkové ceny pobytu.</li>
+        <li>V případě zrušení rezervace <strong>1&nbsp;den a méně</strong> před příjezdem – storno poplatek <strong>100&nbsp;%</strong> z ceny zájezdu.</li>
         <li>Pokud za sebe objednatel najde náhradu, která využije celý termín, bude záloha <strong>vrácena v plné výši</strong>.</li>
       </ul>
     </div>
@@ -262,7 +267,7 @@ function el(tag, attrs={}, children=[]){
 }
 
 let SEASONS = [];
-let KID_PER_NIGHT = 15, CLEANING_FEE = 80, CLEANING_MIN_NIGHTS = 5;
+let KID_PER_NIGHT = 15, CLEANING_FEE = 100, CLEANING_MIN_NIGHTS = 5; // úklid 100 €
 
 async function loadPricing(){
   try{
@@ -277,7 +282,7 @@ async function loadPricing(){
     const valsRow = settingsCsv.find(r => r.some(x => /^\d/.test(x)));
     if(valsRow){
       KID_PER_NIGHT = Number(valsRow[0] || 15);
-      CLEANING_FEE = Number(valsRow[1] || 80);
+      CLEANING_FEE = Number(valsRow[1] || 100);
       CLEANING_MIN_NIGHTS = Number(valsRow[2] || 5);
     }
 
@@ -317,15 +322,25 @@ async function loadPricing(){
 document.addEventListener("DOMContentLoaded", loadPricing);
 </script>
   <script>
+<script>
 (function(){
   let SEASONS = window.SEASONS || [];
-  let KID_PER_NIGHT = 15, CLEANING_FEE = 80, CLEANING_MIN_NIGHTS = 5;
+
+  let KID_PER_NIGHT = 15;
+  let CLEANING_FEE = 100;        // úklid natvrdo 100 €
+  let CLEANING_MIN_NIGHTS = 5;
+
+  const DISCOUNT_MIN_NIGHTS = 10;
+  const DISCOUNT_RATE = 0.10;    // 10 %
 
   // Loader zavolá po načtení CSV
   window.updateCalcFromSettings = function({ KID_PER_NIGHT: k, CLEANING_FEE: cf, CLEANING_MIN_NIGHTS: cmn, SEASONS: s }){
     if (Array.isArray(s) && s.length) SEASONS = s;
     if (typeof k === "number") KID_PER_NIGHT = k;
-    if (typeof cf === "number") CLEANING_FEE = cf;
+
+    // ÚKLID necháváme natvrdo 100 € → ignorujeme cf ze sheetu
+    // if (typeof cf === "number") CLEANING_FEE = cf;
+
     if (typeof cmn === "number") CLEANING_MIN_NIGHTS = cmn;
   };
 
@@ -354,22 +369,41 @@ document.addEventListener("DOMContentLoaded", loadPricing);
 
     const from = new Date(fromEl.value);
     const to   = new Date(toEl.value);
-    if (isNaN(from) || isNaN(to) || to <= from) { out.textContent = 'Zadejte platné datum příjezdu a odjezdu.'; return; }
+    if (isNaN(from) || isNaN(to) || to <= from) {
+      out.textContent = 'Zadejte platné datum příjezdu a odjezdu.';
+      return;
+    }
 
     const nights = Math.round((to - from) / 86400000);
+
     let base = 0;
     for (const d of nightsBetween(from, to)) {
       const p = priceForDate(d);
-      if (p == null) { out.textContent = 'Pro zadané datum nemáme cenu.'; return; }
+      if (p == null) {
+        out.textContent = 'Pro zadané datum nemáme cenu.';
+        return;
+      }
       base += p;
     }
+
     const kidsFee = kids * KID_PER_NIGHT * nights;
+
+    const discount = nights >= DISCOUNT_MIN_NIGHTS
+      ? Math.round(base * DISCOUNT_RATE * 100) / 100
+      : 0;
+
+    const baseAfterDiscount = Math.round((base - discount) * 100) / 100;
+
     const cleaning = nights < CLEANING_MIN_NIGHTS ? CLEANING_FEE : 0;
-    const total = base + kidsFee + cleaning;
+    const total = Math.round((baseAfterDiscount + kidsFee + cleaning) * 100) / 100;
 
     out.innerHTML =
       `Počet nocí: <strong>${nights}</strong><br>` +
       `Základní cena: <strong>${base} €</strong><br>` +
+      (discount
+        ? `Sleva (${Math.round(DISCOUNT_RATE * 100)} % při ${DISCOUNT_MIN_NIGHTS}+ nocích): <strong>−${discount} €</strong><br>` +
+          `Cena po slevě: <strong>${baseAfterDiscount} €</strong><br>`
+        : '') +
       `Příplatek za děti: <strong>${kidsFee} €</strong>${kids ? ` (${KID_PER_NIGHT} € / dítě / noc)` : ''}<br>` +
       (cleaning ? `Závěrečný úklid (pobyt < ${CLEANING_MIN_NIGHTS} nocí): <strong>${cleaning} €</strong><br>` : '') +
       `<span class="text-[var(--gold)]">Orientační celkem: <strong>${total} €</strong></span>`;
@@ -377,6 +411,7 @@ document.addEventListener("DOMContentLoaded", loadPricing);
 
   document.getElementById('calcBtn')?.addEventListener('click', calc);
 })();
+</script>
 </script>
 </body>
 </html>
