@@ -71,10 +71,7 @@
       Cena je platná pro <strong>2&nbsp;osoby / apartmán / noc</strong><br>
       Maximální kapacita: <strong>2&nbsp;dospělí + 2&nbsp;děti na přistýlce</strong>
     </p>
-    <p class="mt-3 text-sm text-slate-300">
-  Při pobytech <strong>10&nbsp;dní a více</strong> poskytujeme slevu <strong>10&nbsp;%</strong> z ceny ubytování.
-</p>
-
+  
     <!-- Tabulka období -->
     <div class="mt-6 overflow-hidden rounded-2xl border border-zinc-800 shadow-soft">
       <table class="w-full text-sm md:text-base">
@@ -93,7 +90,7 @@
       <h3 class="font-semibold text-lg mb-2">Děti</h3>
       <ul class="list-disc ml-5 space-y-1 text-slate-300 text-sm">
         <li>Děti do <strong>3&nbsp;let</strong> bez nároku na lůžko <strong>ZDARMA</strong>.</li>
-        <li>Děti od <strong>3&nbsp;let</strong> na přistýlce za příplatek <strong>10&nbsp;€ / dítě / noc</strong>.</li>
+        <li>Děti od <strong>3&nbsp;let</strong> na přistýlce za příplatek <strong>15&nbsp;€ / dítě / noc</strong>.</li>
       </ul>
     </div>
 
@@ -346,8 +343,6 @@ document.addEventListener("DOMContentLoaded", loadPricing);
   let CLEANING_FEE = 100;        // úklid natvrdo 100 €
   let CLEANING_MIN_NIGHTS = 5;
 
-  const DISCOUNT_MIN_NIGHTS = 10;
-  const DISCOUNT_RATE = 0.10;    // 10 %
 
   // Loader zavolá po načtení CSV
   window.updateCalcFromSettings = function({ KID_PER_NIGHT: k, CLEANING_FEE: cf, CLEANING_MIN_NIGHTS: cmn, SEASONS: s }){
@@ -404,22 +399,12 @@ document.addEventListener("DOMContentLoaded", loadPricing);
 
     const kidsFee = kids * KID_PER_NIGHT * nights;
 
-    const discount = nights >= DISCOUNT_MIN_NIGHTS
-      ? Math.round(base * DISCOUNT_RATE * 100) / 100
-      : 0;
-
-    const baseAfterDiscount = Math.round((base - discount) * 100) / 100;
-
     const cleaning = nights < CLEANING_MIN_NIGHTS ? CLEANING_FEE : 0;
-    const total = Math.round((baseAfterDiscount + kidsFee + cleaning) * 100) / 100;
+    const total = Math.round((base + kidsFee + cleaning) * 100) / 100;
 
     out.innerHTML =
       `Počet nocí: <strong>${nights}</strong><br>` +
       `Základní cena: <strong>${base} €</strong><br>` +
-      (discount
-        ? `Sleva (${Math.round(DISCOUNT_RATE * 100)} % při ${DISCOUNT_MIN_NIGHTS}+ nocích): <strong>−${discount} €</strong><br>` +
-          `Cena po slevě: <strong>${baseAfterDiscount} €</strong><br>`
-        : '') +
       `Příplatek za děti: <strong>${kidsFee} €</strong>${kids ? ` (${KID_PER_NIGHT} € / dítě / noc)` : ''}<br>` +
       (cleaning ? `Závěrečný úklid (pobyt < ${CLEANING_MIN_NIGHTS} nocí): <strong>${cleaning} €</strong><br>` : '') +
       `<span class="text-[var(--gold)]">Orientační celkem: <strong>${total} €</strong></span>`;
